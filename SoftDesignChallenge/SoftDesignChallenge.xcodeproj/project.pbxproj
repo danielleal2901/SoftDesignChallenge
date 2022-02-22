@@ -48,6 +48,7 @@
 		0CB0725E27C55FB20084B2E9 /* SoftDesignChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoftDesignChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB0726227C55FB20084B2E9 /* SoftDesignChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftDesignChallengeUITests.swift; sourceTree = "<group>"; };
 		0CB0726427C55FB20084B2E9 /* SoftDesignChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftDesignChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0CB0727F27C568300084B2E9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftDesignChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607821379980C00B2897B7FB /* Pods-SoftDesignChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.release.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		F114B5F3454F0FDE84680C4F /* Pods-SoftDesignChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.debug.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -255,6 +256,7 @@
 		D0680CC973FE84C244C270DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0CB0727F27C568300084B2E9 /* XCTest.framework */,
 				4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */,
 			);
 			name = Frameworks;
@@ -612,6 +614,7 @@
 				INFOPLIST_FILE = SoftDesignChallenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -639,6 +642,7 @@
 				INFOPLIST_FILE = SoftDesignChallenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
