@@ -8,6 +8,12 @@
 import UIKit
 
 class HomeViewController: BaseViewController, ViewCodable {
+  
+  private let searchController: UISearchController = {
+    let searchController = UISearchController(searchResultsController: nil)
+    searchController.searchBar.placeholder = "Search for event"
+    return searchController
+  }()
 
   private lazy var homeView: HomeView = {
     let view = HomeView()
@@ -36,6 +42,10 @@ class HomeViewController: BaseViewController, ViewCodable {
 
   func applyAdditionalConfiguration() {
     view.backgroundColor = .cyan
+    navigationItem.searchController = searchController
+    navigationItem.title = "Events Finder"
+    navigationItem.hidesSearchBarWhenScrolling = false
+    navigationController?.navigationBar.prefersLargeTitles = true
   }
   
 }
