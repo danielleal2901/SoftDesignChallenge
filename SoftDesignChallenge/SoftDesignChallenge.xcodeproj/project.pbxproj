@@ -10,6 +10,8 @@
 		0C184F6B27C56D82000E4EF7 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F6A27C56D82000E4EF7 /* Network.swift */; };
 		0C184F6D27C57371000E4EF7 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F6C27C57371000E4EF7 /* NetworkErrors.swift */; };
 		0C184F7127C575D2000E4EF7 /* Encodable+dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7027C575D2000E4EF7 /* Encodable+dictionary.swift */; };
+		0C184F7327C57B95000E4EF7 /* EventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7227C57B94000E4EF7 /* EventRequest.swift */; };
+		0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7527C57CEF000E4EF7 /* CheckIn.swift */; };
 		0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724127C55FB00084B2E9 /* AppDelegate.swift */; };
 		0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */; };
 		0CB0724627C55FB10084B2E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724527C55FB00084B2E9 /* HomeViewController.swift */; };
@@ -44,6 +46,8 @@
 		0C184F6A27C56D82000E4EF7 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		0C184F6C27C57371000E4EF7 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		0C184F7027C575D2000E4EF7 /* Encodable+dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+dictionary.swift"; sourceTree = "<group>"; };
+		0C184F7227C57B94000E4EF7 /* EventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRequest.swift; sourceTree = "<group>"; };
+		0C184F7527C57CEF000E4EF7 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		0CB0723E27C55FB00084B2E9 /* SoftDesignChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftDesignChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB0724127C55FB00084B2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,14 @@
 				0C184F7027C575D2000E4EF7 /* Encodable+dictionary.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0C184F7427C57CDF000E4EF7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C184F7527C57CEF000E4EF7 /* CheckIn.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		0CB0723527C55FB00084B2E9 = {
@@ -253,6 +265,8 @@
 		0CB0727C27C560750084B2E9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0C184F7427C57CDF000E4EF7 /* Models */,
+				0C184F7227C57B94000E4EF7 /* EventRequest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -260,7 +274,6 @@
 		0CB0727D27C560860084B2E9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				0CB0728727C56B290084B2E9 /* Services */,
 				0C184F6A27C56D82000E4EF7 /* Network.swift */,
 				0CB0728327C56A880084B2E9 /* Request.swift */,
 				0CB0728527C56AB00084B2E9 /* HTTPMethod.swift */,
@@ -274,13 +287,6 @@
 			children = (
 			);
 			path = UseCases;
-			sourceTree = "<group>";
-		};
-		0CB0728727C56B290084B2E9 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		260C966B051143335E5F3A48 /* Pods */ = {
@@ -478,7 +484,9 @@
 				0C184F7127C575D2000E4EF7 /* Encodable+dictionary.swift in Sources */,
 				0CB0724627C55FB10084B2E9 /* HomeViewController.swift in Sources */,
 				0CB0728427C56A890084B2E9 /* Request.swift in Sources */,
+				0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */,
 				0C184F6B27C56D82000E4EF7 /* Network.swift in Sources */,
+				0C184F7327C57B95000E4EF7 /* EventRequest.swift in Sources */,
 				0C184F6D27C57371000E4EF7 /* NetworkErrors.swift in Sources */,
 				0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */,
 				0CB0728627C56AB00084B2E9 /* HTTPMethod.swift in Sources */,
