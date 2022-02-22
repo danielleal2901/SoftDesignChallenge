@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 final class NetworkManager {
   //MARK: Variables
@@ -22,33 +24,33 @@ final class NetworkManager {
     _ url: URL,
     method: HTTPMethod = .get,
     parameters: [String: Any]? = nil,
-    headers: [String: String]? = nil,
-    completion: @escaping (Result<T, Error>) -> Void) {
+    headers: [String: String]? = nil) -> Observable<T> {
       
-      do {
-        let request = try setupRequest(url, method: method, parameters: parameters, headers: headers)
-        let dataTask = session.dataTask(with: request, completionHandler: {[weak self] data, response, error in
-          DispatchQueue.main.async {
-            self?.handleRequest(data: data, response: response, error: error, completion: completion)
+      return .create { observer in
+        do {
+          let request = try self.setupRequest(url, method: method, parameters: parameters, headers: headers)
+          return URLSession.shared.rx.data(request: request)
+          .map { data in
+              try JSONDecoder().decode(T.self, from: data)
           }
-        })
-        dataTask.resume() 
-      } catch {
-        completion(.failure(error))
+          .observe(on: MainScheduler.asyncInstance)
+          .bind(to: observer)
+        } catch {
+          observer.onError(error)
+        }
+        
+        return Disposables.create()
       }
-      
     }
   
   public func request<T: Decodable> (
-    service: Request,
-    completion: @escaping (Result<T, Error>) -> Void) {
+    service: Request) -> Observable<T> {
       
       guard let url = URL(string: service.path) else {
-        completion(.failure(NetworkErrors.invalidUrl))
-        return
+        return Observable<T>.error(NetworkErrors.invalidUrl)
       }
       
-      request(url, method: service.method, parameters: service.params, headers: service.headers, completion: completion)
+      return request(url, method: service.method, parameters: service.params, headers: service.headers)
     }
   
   

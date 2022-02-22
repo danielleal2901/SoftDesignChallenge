@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol GetEventsUseCase {
-  func getEvents(service: EventRequest, completion: @escaping (Result<[Event], Error>) -> Void)
+  func getEvents(service: EventRequest) -> Observable<[Event]>
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: BaseViewController, ViewCodable {
-  
+  //MARK: Layout
   private let searchController: UISearchController = {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchBar.placeholder = "Search for event"
@@ -21,6 +21,7 @@ class HomeViewController: BaseViewController, ViewCodable {
     return view
   }()
     
+  //MARK: Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     

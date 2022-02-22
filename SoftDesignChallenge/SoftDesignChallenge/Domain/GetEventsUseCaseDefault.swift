@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import RxSwift
 
 class GetEventsUseCaseDefault: GetEventsUseCase {
-  func getEvents(service: EventRequest, completion: @escaping (Result<[Event], Error>) -> Void) {
-    NetworkManager.shared.request(service: service, completion: completion)
+  func getEvents(service: EventRequest) -> Observable<[Event]> {
+    return NetworkManager.shared.request(service: service)
   }
 }
