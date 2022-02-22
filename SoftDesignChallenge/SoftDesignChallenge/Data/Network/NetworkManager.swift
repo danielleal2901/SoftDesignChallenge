@@ -1,5 +1,5 @@
 //
-//  Network.swift
+//  NetworkManager.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 22/02/22.
@@ -10,7 +10,7 @@ import Foundation
 final class NetworkManager {
   //MARK: Variables
   private let session: URLSession
-  public let shared = NetworkManager()
+  public static let shared = NetworkManager()
   
   //MARK: Initializers
   private init () {
