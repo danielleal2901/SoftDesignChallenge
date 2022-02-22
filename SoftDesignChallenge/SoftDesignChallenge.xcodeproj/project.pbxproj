@@ -16,6 +16,7 @@
 		0CB0725927C55FB20084B2E9 /* SoftDesignChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0725827C55FB20084B2E9 /* SoftDesignChallengeTests.swift */; };
 		0CB0726327C55FB20084B2E9 /* SoftDesignChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0726227C55FB20084B2E9 /* SoftDesignChallengeUITests.swift */; };
 		0CB0726527C55FB20084B2E9 /* SoftDesignChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0726427C55FB20084B2E9 /* SoftDesignChallengeUITestsLaunchTests.swift */; };
+		68183582DF50EE17B35C93AC /* Pods_SoftDesignChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,9 @@
 		0CB0725E27C55FB20084B2E9 /* SoftDesignChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoftDesignChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB0726227C55FB20084B2E9 /* SoftDesignChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftDesignChallengeUITests.swift; sourceTree = "<group>"; };
 		0CB0726427C55FB20084B2E9 /* SoftDesignChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftDesignChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftDesignChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		607821379980C00B2897B7FB /* Pods-SoftDesignChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.release.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		F114B5F3454F0FDE84680C4F /* Pods-SoftDesignChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.debug.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68183582DF50EE17B35C93AC /* Pods_SoftDesignChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +88,8 @@
 				0CB0725727C55FB20084B2E9 /* SoftDesignChallengeTests */,
 				0CB0726127C55FB20084B2E9 /* SoftDesignChallengeUITests */,
 				0CB0723F27C55FB00084B2E9 /* Products */,
+				260C966B051143335E5F3A48 /* Pods */,
+				D0680CC973FE84C244C270DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -239,6 +246,24 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		260C966B051143335E5F3A48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F114B5F3454F0FDE84680C4F /* Pods-SoftDesignChallenge.debug.xcconfig */,
+				607821379980C00B2897B7FB /* Pods-SoftDesignChallenge.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D0680CC973FE84C244C270DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -246,9 +271,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CB0726827C55FB20084B2E9 /* Build configuration list for PBXNativeTarget "SoftDesignChallenge" */;
 			buildPhases = (
+				BA20BC86CDEF226DD9A314D9 /* [CP] Check Pods Manifest.lock */,
 				0CB0723A27C55FB00084B2E9 /* Sources */,
 				0CB0723B27C55FB00084B2E9 /* Frameworks */,
 				0CB0723C27C55FB00084B2E9 /* Resources */,
+				2556AA4CB273AB1E280DFE65 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -364,6 +391,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2556AA4CB273AB1E280DFE65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA20BC86CDEF226DD9A314D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SoftDesignChallenge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0CB0723A27C55FB00084B2E9 /* Sources */ = {
@@ -546,6 +615,7 @@
 		};
 		0CB0726927C55FB20084B2E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F114B5F3454F0FDE84680C4F /* Pods-SoftDesignChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -572,6 +642,7 @@
 		};
 		0CB0726A27C55FB20084B2E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 607821379980C00B2897B7FB /* Pods-SoftDesignChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
