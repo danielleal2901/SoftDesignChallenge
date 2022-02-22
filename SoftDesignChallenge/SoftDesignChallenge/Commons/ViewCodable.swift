@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ViewCodable: UIView {
+protocol ViewCodable {
   func setupView()
   func addHierarchy()
   func addConstraints()
@@ -23,4 +23,9 @@ extension ViewCodable {
     applyAdditionalConfiguration()
     bindUI()
   }
+  
+  func addHierarchy(){}
+  func addConstraints(){}
+  func applyAdditionalConfiguration(){}
+  func bindUI(){}
 }

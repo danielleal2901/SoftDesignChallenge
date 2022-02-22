@@ -23,11 +23,11 @@ enum EventRequest: Request {
   var path: String {
     switch self {
     case .getEvents:
-      return "events/"
+      return "\(host)events/"
     case .getEvent (let id):
-      return "events/\(id)"
+      return "\(host)events/\(id)"
     case .checkIn:
-      return "checkin"
+      return "\(host)checkin"
     }
   }
   

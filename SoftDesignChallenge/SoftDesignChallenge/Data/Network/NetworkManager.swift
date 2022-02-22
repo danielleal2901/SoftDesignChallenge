@@ -27,10 +27,12 @@ final class NetworkManager {
       
       do {
         let request = try setupRequest(url, method: method, parameters: parameters, headers: headers)
-        session.dataTask(with: request, completionHandler: {[weak self] data, response, error in
-          self?.handleRequest(data: data, response: response, error: error, completion: completion)
+        let dataTask = session.dataTask(with: request, completionHandler: {[weak self] data, response, error in
+          DispatchQueue.main.async {
+            self?.handleRequest(data: data, response: response, error: error, completion: completion)
+          }
         })
-        
+        dataTask.resume() 
       } catch {
         completion(.failure(error))
       }
