@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol HomeViewModel {
   var useCase: GetEventsUseCase {get}
+  var events: PublishSubject<[Event]> {get}
+  var error: PublishSubject<String> {get}
   func getEvents()
   
   init(useCase: GetEventsUseCase)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController, ViewCodable {
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -16,4 +16,3 @@ class HomeViewController: UIViewController {
 
 
 }
-
