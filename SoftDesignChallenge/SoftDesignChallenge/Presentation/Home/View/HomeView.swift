@@ -13,16 +13,10 @@ class HomeView: UIView, ViewCodable {
   //MARK: Variables
   let viewModel = HomeViewModel()
   let disposeBag = DisposeBag()
-  private var data: [Event] = [] {
-    didSet {
-      tableView.reloadData()
-    }
-  }
-  
+
   //MARK: Layout
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
-    tableView.dataSource = self
     tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.register(EventTableViewCell.self, forCellReuseIdentifier: EventTableViewCell.identifier)
     tableView.rowHeight = UITableView.automaticDimension
@@ -56,34 +50,16 @@ class HomeView: UIView, ViewCodable {
   }
   
   func bindUI() {
+    viewModel.events.bind(to: tableView.rx.items(cellIdentifier: EventTableViewCell.identifier, cellType: EventTableViewCell.self))
+    { (row, event, cell) in
+      cell.setup(title: event.title, imageUrl: event.image)
+    }.disposed(by: disposeBag)
+    
+    tableView.rx.modelSelected(EventTableViewCell.self).subscribe(onNext: { item in
+        print("SelectedItem: \(item.title)")
+    }).disposed(by: disposeBag)
+    
     viewModel.getEvents()
-    
-    viewModel.events.subscribe (onNext: {[weak self] events in
-      self?.data = events
-    }).disposed(by: disposeBag)
-    
-    viewModel.error.subscribe (onNext: {[weak self] error in
-      print(error)
-    }).disposed(by: disposeBag)
   }
   
-}
-
-extension HomeView: UITableViewDataSource {
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-  }
-  
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return data.count
-  }
-  
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: EventTableViewCell.identifier, for: indexPath) as? EventTableViewCell
-    else {
-      return UITableViewCell()
-    }
-    cell.setup(title: data[indexPath.row].title, imageUrl: data[indexPath.row].image)
-    return cell
-  }
 }
