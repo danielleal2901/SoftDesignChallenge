@@ -7,10 +7,16 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 import UIKit
 
-class EventsTableViewCellViewModel {
-  let image = PublishSubject<UIImage>()
+class EventsTableViewCellViewModel: ImageRetriever {
+  typealias ImageDescriptorType = EventListImage
+  
+  private let imageSubject = PublishSubject<UIImage>()
+  var image: Driver<UIImage> {
+    return imageSubject.asDriver(onErrorJustReturn: self.image(.park))
+  }
   let disposeBag = DisposeBag()
   
   init(){
@@ -21,7 +27,7 @@ class EventsTableViewCellViewModel {
     
     observable
       .compactMap({UIImage(data: $0)})
-      .bind(to: image)
+      .bind(to: imageSubject)
       .disposed(by: disposeBag)
   }
 }

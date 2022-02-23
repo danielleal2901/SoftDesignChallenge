@@ -29,6 +29,7 @@
 		0C184FA527C5B991000E4EF7 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA427C5B991000E4EF7 /* EventDetailView.swift */; };
 		0C184FA827C5C569000E4EF7 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA727C5C569000E4EF7 /* EventDetailViewModel.swift */; };
 		0C184FAA27C5DAD4000E4EF7 /* EventDetail+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA927C5DAD4000E4EF7 /* EventDetail+Constraints.swift */; };
+		0C184FAD27C5ECBA000E4EF7 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */; };
 		0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724127C55FB00084B2E9 /* AppDelegate.swift */; };
 		0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */; };
 		0CB0724627C55FB10084B2E9 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724527C55FB00084B2E9 /* EventsViewController.swift */; };
@@ -39,6 +40,10 @@
 		0CB0726527C55FB20084B2E9 /* SoftDesignChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0726427C55FB20084B2E9 /* SoftDesignChallengeUITestsLaunchTests.swift */; };
 		0CB0728427C56A890084B2E9 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0728327C56A880084B2E9 /* Request.swift */; };
 		0CB0728627C56AB00084B2E9 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0728527C56AB00084B2E9 /* HTTPMethod.swift */; };
+		0CB4E86027C676FD00949D82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CB4E85F27C676FD00949D82 /* Assets.xcassets */; };
+		0CB4E86227C6772800949D82 /* ImageDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E86127C6772800949D82 /* ImageDescriptor.swift */; };
+		0CB4E86427C6778900949D82 /* BundleIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E86327C6778700949D82 /* BundleIdentifiable.swift */; };
+		0CB4E86627C677DC00949D82 /* EventListImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E86527C677DC00949D82 /* EventListImage.swift */; };
 		68183582DF50EE17B35C93AC /* Pods_SoftDesignChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +87,7 @@
 		0C184FA427C5B991000E4EF7 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		0C184FA727C5C569000E4EF7 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		0C184FA927C5DAD4000E4EF7 /* EventDetail+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetail+Constraints.swift"; sourceTree = "<group>"; };
+		0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
 		0CB0723E27C55FB00084B2E9 /* SoftDesignChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftDesignChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB0724127C55FB00084B2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +103,10 @@
 		0CB0727F27C568300084B2E9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0CB0728327C56A880084B2E9 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		0CB0728527C56AB00084B2E9 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		0CB4E85F27C676FD00949D82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0CB4E86127C6772800949D82 /* ImageDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDescriptor.swift; sourceTree = "<group>"; };
+		0CB4E86327C6778700949D82 /* BundleIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleIdentifiable.swift; sourceTree = "<group>"; };
+		0CB4E86527C677DC00949D82 /* EventListImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListImage.swift; sourceTree = "<group>"; };
 		4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftDesignChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607821379980C00B2897B7FB /* Pods-SoftDesignChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.release.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		F114B5F3454F0FDE84680C4F /* Pods-SoftDesignChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.debug.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +144,8 @@
 				0C184F7F27C58157000E4EF7 /* ViewCodable.swift */,
 				0C184F8927C586BE000E4EF7 /* BaseViewController.swift */,
 				0C184F6F27C575B4000E4EF7 /* Extensions */,
+				0CB4E86127C6772800949D82 /* ImageDescriptor.swift */,
+				0CB4E86327C6778700949D82 /* BundleIdentifiable.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -289,6 +301,7 @@
 			children = (
 				0C184F7D27C580FF000E4EF7 /* EventsViewModel.swift */,
 				0C184F9127C5A586000E4EF7 /* EventsTableViewCellViewModel.swift */,
+				0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -325,6 +338,7 @@
 		0CB0727C27C560750084B2E9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0CB4E85E27C676EF00949D82 /* Resources */,
 				0C184F7427C57CDF000E4EF7 /* Models */,
 			);
 			path = Data;
@@ -339,6 +353,15 @@
 				0C184F6C27C57371000E4EF7 /* NetworkErrors.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0CB4E85E27C676EF00949D82 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0CB4E85F27C676FD00949D82 /* Assets.xcassets */,
+				0CB4E86527C677DC00949D82 /* EventListImage.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		260C966B051143335E5F3A48 /* Pods */ = {
@@ -466,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CB0724E27C55FB20084B2E9 /* LaunchScreen.storyboard in Resources */,
+				0CB4E86027C676FD00949D82 /* Assets.xcassets in Resources */,
 				0CB0724B27C55FB20084B2E9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,16 +573,20 @@
 				0C184F7327C57B95000E4EF7 /* EventRequest.swift in Sources */,
 				0C184F8627C58612000E4EF7 /* Coordinator.swift in Sources */,
 				0C184F8D27C588EB000E4EF7 /* EventsView.swift in Sources */,
+				0C184FAD27C5ECBA000E4EF7 /* SearchError.swift in Sources */,
 				0C184F6D27C57371000E4EF7 /* NetworkErrors.swift in Sources */,
 				0C184F9C27C5B704000E4EF7 /* EventsViewOutputDelegate.swift in Sources */,
+				0CB4E86227C6772800949D82 /* ImageDescriptor.swift in Sources */,
 				0C184FA027C5B7A6000E4EF7 /* EventsCoordinator.swift in Sources */,
 				0C184F9827C5A705000E4EF7 /* ImageRequest.swift in Sources */,
 				0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */,
 				0C184F8027C58157000E4EF7 /* ViewCodable.swift in Sources */,
 				0CB0728627C56AB00084B2E9 /* HTTPMethod.swift in Sources */,
+				0CB4E86427C6778900949D82 /* BundleIdentifiable.swift in Sources */,
 				0C184F9227C5A586000E4EF7 /* EventsTableViewCellViewModel.swift in Sources */,
 				0C184FA227C5B95F000E4EF7 /* EventDetailViewController.swift in Sources */,
 				0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */,
+				0CB4E86627C677DC00949D82 /* EventListImage.swift in Sources */,
 				0C184FAA27C5DAD4000E4EF7 /* EventDetail+Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

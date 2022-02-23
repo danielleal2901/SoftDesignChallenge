@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
-struct Event: Decodable {
+class Event: Decodable, Equatable {
   let people: [String]
   let date: Int
   let welcomeDescription: String
   let image: String
+  var loadedImage: UIImage?
   let longitude : Double
   let latitude : Double
   let price: Double
@@ -21,5 +23,13 @@ struct Event: Decodable {
   enum CodingKeys: String, CodingKey {
     case people, date, image, longitude, latitude, price, title, id
     case welcomeDescription = "description"
+  }
+  
+  static func ==(lhs: Event, rhs: Event) -> Bool {
+      return lhs.id == rhs.id
+  }
+  
+  func setImage(_ image: UIImage){
+    self.loadedImage = image
   }
 }

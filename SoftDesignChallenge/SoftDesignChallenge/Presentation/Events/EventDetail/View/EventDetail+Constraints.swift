@@ -47,7 +47,8 @@ extension EventDetailView {
     [
       verticalStack.topAnchor.constraint(equalTo: eventImage.bottomAnchor, constant: 20),
       verticalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
-      verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
+      verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+      dateLabel.widthAnchor.constraint(equalTo: verticalStack.widthAnchor)
     ]
     
   }

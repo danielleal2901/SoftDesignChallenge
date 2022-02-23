@@ -42,6 +42,7 @@ class EventDetailView: UIView, ViewCodable {
     label.text = event.title
     label.textAlignment = .center
     label.numberOfLines = 0
+    label.font = UIFont(name: "AvenirNextCondensed-DemiBold", size: 16)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
@@ -51,21 +52,27 @@ class EventDetailView: UIView, ViewCodable {
     label.text = event.welcomeDescription
     label.textAlignment = .justified
     label.numberOfLines = 0
+    label.font = UIFont(name: "AvenirNextCondensed-Regular", size: 14)
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
   lazy var dateLabel: UILabel = {
     let label = UILabel()
-    label.text = "29/01/2000"
+    label.text = "Data: 29/01/2000"
+    label.font = UIFont(name: "AvenirNextCondensed-Medium", size: 12)
+    label.textAlignment = .left
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
-  let eventImage: UIImageView = {
+  lazy var eventImage: UIImageView = {
     let image = UIImageView()
-    image.contentMode = .scaleAspectFit
-    image.backgroundColor = .red
+    image.image = event.loadedImage
+    image.contentMode = .scaleAspectFill
+    image.layer.cornerRadius = 10.0
+    image.layer.masksToBounds = true
+    image.clipsToBounds = true
     image.translatesAutoresizingMaskIntoConstraints = false
     return image
   }()
@@ -92,7 +99,7 @@ class EventDetailView: UIView, ViewCodable {
   override func didMoveToSuperview() {
     super.didMoveToSuperview()
     
-    DispatchQueue.global(qos: .userInitiated).async {
+    DispatchQueue.main.async {
       self.updateLocationOnMap(to: CLLocation(latitude: self.event.latitude, longitude: self.event.longitude), with: self.event.title)
     }
   }

@@ -9,16 +9,10 @@ import UIKit
 
 class EventsViewController: BaseViewController, ViewCodable {
   //MARK: Layout
-  private let searchController: UISearchController = {
-    let searchController = UISearchController(searchResultsController: nil)
-    searchController.searchBar.placeholder = "Search for event"
-    return searchController
-  }()
-
-  private lazy var eventsView: EventsView = {
+  lazy var eventsView: EventsView = {
     let view = EventsView()
-    view.translatesAutoresizingMaskIntoConstraints = false
     view.outputDelegate = self
+    view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
     
@@ -43,11 +37,11 @@ class EventsViewController: BaseViewController, ViewCodable {
   }
 
   func applyAdditionalConfiguration() {
-    view.backgroundColor = .cyan
-    navigationItem.searchController = searchController
+    view.backgroundColor = .white
     navigationItem.title = "Events Finder"
     navigationItem.hidesSearchBarWhenScrolling = false
     navigationController?.navigationBar.prefersLargeTitles = true
+    definesPresentationContext = true
   }
   
 }
