@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 
-class EventTableViewCell: UITableViewCell, ViewCodable {  
+class EventTableViewCell: UITableViewCell, ViewCodable {
   static let identifier = String(describing: EventTableViewCell.self)
   
   var event: Event? {
@@ -67,10 +67,9 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
     NSLayoutConstraint.activate([
       eventImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
       eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
-      eventImage.heightAnchor.constraint(equalToConstant: 60),
-      eventImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-      eventImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-      
+      eventImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+      eventImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
+
       eventTitle.leadingAnchor.constraint(equalTo: eventImage.trailingAnchor, constant: 10),
       eventTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
       eventTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),

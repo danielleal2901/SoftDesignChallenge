@@ -9,4 +9,5 @@ import Foundation
 
 enum EventListImage : String, ImageDescriptor {
   case park
+  case warning
 }

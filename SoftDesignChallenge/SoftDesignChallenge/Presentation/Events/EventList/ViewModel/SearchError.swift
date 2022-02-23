@@ -10,5 +10,17 @@ import Foundation
 enum SearchError: Error {
     case underlyingError(Error)
     case notFound
-    case unkowned
+    case unknown
+  
+  var message: String {
+    switch self {
+    case .underlyingError(let error):
+      return error.localizedDescription
+    case .notFound:
+      return "Event not found"
+    case .unknown:
+      return "unknown"
+    }
+    
+  }
 }

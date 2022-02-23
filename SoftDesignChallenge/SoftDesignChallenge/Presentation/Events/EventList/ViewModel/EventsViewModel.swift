@@ -19,7 +19,7 @@ class EventsViewModel {
   private let errorSubject = PublishSubject<SearchError?>()
   var error: Driver<SearchError?> {
     return errorSubject
-      .asDriver(onErrorJustReturn: SearchError.unkowned)
+      .asDriver(onErrorJustReturn: SearchError.unknown)
   }
   
   private let loadingSubject = PublishSubject<Bool>()
@@ -38,7 +38,6 @@ class EventsViewModel {
   let disposeBag = DisposeBag()
   
   init() {
-    setupSearchObservables()
   }
   
   func getEvents() {
@@ -47,6 +46,7 @@ class EventsViewModel {
     observable.subscribe(onNext: {[weak self] events in
       self?.allEvents = events
       self?.eventsSubject.onNext(events)
+      self?.setupSearchObservables()
     }, onError: {[weak self] error in
       self?.errorSubject.onNext(SearchError.underlyingError(error))
     }).disposed(by: disposeBag)
@@ -67,7 +67,7 @@ class EventsViewModel {
           .catch { [weak self] error -> Observable<[Event]> in
             self?.errorSubject.onNext(SearchError.underlyingError(error))
             return Observable.empty()
-          }
+          }.debounce(.seconds(1), scheduler: MainScheduler.instance)
       }
       .subscribe(onNext: { [weak self] events in
         self?.loadingSubject.onNext(false)

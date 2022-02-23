@@ -29,11 +29,26 @@ class EventsView: UIView, ViewCodable {
   let tableView: UITableView = {
     let tableView = UITableView()
     tableView.register(EventTableViewCell.self, forCellReuseIdentifier: EventTableViewCell.identifier)
-    tableView.rowHeight = UITableView.automaticDimension
+    tableView.rowHeight = 60
     tableView.contentMode = .scaleAspectFill
     tableView.translatesAutoresizingMaskIntoConstraints = false
     return tableView
   }()
+  
+  lazy var loadingView: LoadingView = {
+    let view = LoadingView()
+    view.isHidden = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  lazy var errorView: SearchErrorView = {
+    let view = SearchErrorView()
+    view.isHidden = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
   
   //MARK: Initializers
   init(viewModel: EventsViewModel = EventsViewModel()) {
@@ -51,6 +66,8 @@ class EventsView: UIView, ViewCodable {
   func addHierarchy() {
     addSubview(searchBar)
     addSubview(tableView)
+    addSubview(errorView)
+    addSubview(loadingView)
   }
   
   func addConstraints() {
@@ -58,19 +75,29 @@ class EventsView: UIView, ViewCodable {
       searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
       searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+      
       tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
       tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-      tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+      tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      
+      errorView.centerYAnchor.constraint(equalTo: centerYAnchor),
+      errorView.centerXAnchor.constraint(equalTo: centerXAnchor),
+      errorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+
+      
+      loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
+      loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
+      loadingView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
     ])
-  }
-  
-  func applyAdditionalConfiguration() {
   }
   
   func bindUI() {
     bindTableView()
     bindSearchBar()
+    bindLoading()
+    bindErrors()
+    
     viewModel.getEvents()
   }
   
@@ -98,31 +125,31 @@ class EventsView: UIView, ViewCodable {
       .orEmpty
       .bind(to: self.viewModel.searchObserver)
       .disposed(by: disposeBag)
-    
-    //          viewModel.isLoading.asDriver().drive(contentView.rx.isHidden).disposed(by: disposeBag)
-    //          viewModel.error
-    //              .map { $0 != nil }
-    //              .drive(contentView.rx.isHidden)
-    //              .disposed(by: bag)
-    //
-    //          if let loadingView = loadingView {
-    //              viewModel.isLoading
-    //                  .map(!)
-    //                  .drive(loadingView.rx.isHidden)
-    //                  .disposed(by: bag)
-    //              viewModel.error
-    //                  .map { $0 != nil }
-    //                  .drive(loadingView.rx.isHidden)
-    //                  .disposed(by: bag)
-    //          }
-    //
-    //          if let errorView = errorView {
-    //              viewModel.error
-    //                  .map { $0 == nil }
-    //                  .drive(errorView.rx.isHidden)
-    //                  .disposed(by: bag)
-    //
-    //          }
+  }
+  
+  private func bindErrors() {
+    viewModel.error
+        .map { $0 != nil }
+        .drive(tableView.rx.isHidden)
+        .disposed(by: disposeBag)
+    viewModel.error
+        .map { $0 != nil }
+        .drive(loadingView.rx.isHidden)
+        .disposed(by: disposeBag)
+    viewModel.error
+        .map { $0 == nil }
+        .drive(errorView.rx.isHidden)
+        .disposed(by: disposeBag)
+    viewModel.error.drive(errorView.rx.errorMessage)
+      .disposed(by: disposeBag)
+  }
+  
+  private func bindLoading() {
+    viewModel.isLoading.asDriver().drive(tableView.rx.isHidden).disposed(by: disposeBag)
+    viewModel.isLoading
+        .map(!)
+        .drive(loadingView.rx.isHidden)
+        .disposed(by: disposeBag)
   }
 }
 
