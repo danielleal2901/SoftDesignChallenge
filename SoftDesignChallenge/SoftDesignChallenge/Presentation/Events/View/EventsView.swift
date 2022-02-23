@@ -34,6 +34,7 @@ class EventsView: UIView, ViewCodable {
     fatalError("init(coder:) has not been implemented")
   }
   
+  //MARK: Methods
   func addHierarchy() {
     addSubview(tableView)
   }
@@ -66,8 +67,8 @@ class EventsView: UIView, ViewCodable {
       cell.setup(title: event.title, imageUrl: event.image)
     }.disposed(by: disposeBag)
     
-    tableView.rx.modelSelected(Event.self).subscribe(onNext: { event in
-        print("SelectedItem: \(event.title)")
+    tableView.rx.modelSelected(Event.self).subscribe(onNext: {[weak self] event in
+      self?.outputDelegate?.goEventDetailFlow(event: event)
     }).disposed(by: disposeBag)
   }
   

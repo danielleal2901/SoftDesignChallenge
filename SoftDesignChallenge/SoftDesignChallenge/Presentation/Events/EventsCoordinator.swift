@@ -17,15 +17,21 @@ class EventsCoordinator: Coordinator {
   }
   
   func start() {
-    navigationController.pushViewController(createEventsViewController(), animated: true)
+    navigationController.pushViewController(showEventsView(), animated: true)
   }
   
 }
 
 extension EventsCoordinator {
-  func createEventsViewController() -> EventsViewController {
+  func showEventsView() -> EventsViewController {
     let controller = EventsViewController()
     controller.coordinator = self
     return controller
+  }
+  
+  func showEventDetail(event: Event) {
+    let controller = EventDetailViewController(event: event)
+    controller.coordinator = self
+    navigationController.pushViewController(controller, animated: true)
   }
 }
