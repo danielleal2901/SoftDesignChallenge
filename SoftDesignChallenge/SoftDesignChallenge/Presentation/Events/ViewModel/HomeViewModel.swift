@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-class HomeViewModel {
+class EventsViewModel {
   let useCase: GetEventsUseCase
   let events = PublishSubject<[Event]>()
   let error = PublishSubject<String>()

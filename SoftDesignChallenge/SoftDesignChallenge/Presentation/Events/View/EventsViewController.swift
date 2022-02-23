@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EventsViewController.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 22/02/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: BaseViewController, ViewCodable {
+class EventsViewController: BaseViewController, ViewCodable {
   //MARK: Layout
   private let searchController: UISearchController = {
     let searchController = UISearchController(searchResultsController: nil)
@@ -15,9 +15,10 @@ class HomeViewController: BaseViewController, ViewCodable {
     return searchController
   }()
 
-  private lazy var homeView: HomeView = {
-    let view = HomeView()
+  private lazy var eventsView: EventsView = {
+    let view = EventsView()
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.outputDelegate = self
     return view
   }()
     
@@ -29,15 +30,15 @@ class HomeViewController: BaseViewController, ViewCodable {
   }
   
   func addHierarchy() {
-    view.addSubview(homeView)
+    view.addSubview(eventsView)
   }
   
   func addConstraints() {
     NSLayoutConstraint.activate([
-        homeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        homeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        homeView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-        homeView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+      eventsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      eventsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      eventsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      eventsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
   }
 
@@ -50,3 +51,5 @@ class HomeViewController: BaseViewController, ViewCodable {
   }
   
 }
+
+

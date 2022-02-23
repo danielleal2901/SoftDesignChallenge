@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  EventsView.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 22/02/22.
@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 import RxSwift
 
-class HomeView: UIView, ViewCodable {
+class EventsView: UIView, ViewCodable {
   //MARK: Variables
-  let viewModel = HomeViewModel()
+  let viewModel = EventsViewModel()
   let disposeBag = DisposeBag()
+  weak var outputDelegate: EventsViewOutputDelegate?
 
   //MARK: Layout
   private lazy var tableView: UITableView = {

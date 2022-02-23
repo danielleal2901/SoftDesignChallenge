@@ -17,15 +17,16 @@ class MainCoordinator: Coordinator {
   }
   
   func start() {
-    navigationController.pushViewController(createHomeViewController(), animated: true)
+    let coordinator = EventsCoordinator(navigationController: navigationController)
+    childCoordinators.append(coordinator)
+    
+    coordinator.start()
   }
   
 }
 
 extension MainCoordinator {
-  func createHomeViewController() -> HomeViewController {
-    let controller = HomeViewController()
-    controller.coordinator = self
-    return controller
+  func startHomeFlow() {
+    
   }
 }
