@@ -13,7 +13,7 @@
 		0C184F7327C57B95000E4EF7 /* EventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7227C57B94000E4EF7 /* EventRequest.swift */; };
 		0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7527C57CEF000E4EF7 /* CheckIn.swift */; };
 		0C184F7827C57E84000E4EF7 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7727C57E84000E4EF7 /* Event.swift */; };
-		0C184F7E27C580FF000E4EF7 /* HomeViewModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7D27C580FF000E4EF7 /* HomeViewModelDefault.swift */; };
+		0C184F7E27C580FF000E4EF7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7D27C580FF000E4EF7 /* HomeViewModel.swift */; };
 		0C184F8027C58157000E4EF7 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7F27C58157000E4EF7 /* ViewCodable.swift */; };
 		0C184F8227C58232000E4EF7 /* GetEventsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8127C58232000E4EF7 /* GetEventsUseCase.swift */; };
 		0C184F8427C5823F000E4EF7 /* GetEventsUseCaseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8327C5823F000E4EF7 /* GetEventsUseCaseDefault.swift */; };
@@ -63,7 +63,7 @@
 		0C184F7227C57B94000E4EF7 /* EventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRequest.swift; sourceTree = "<group>"; };
 		0C184F7527C57CEF000E4EF7 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		0C184F7727C57E84000E4EF7 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		0C184F7D27C580FF000E4EF7 /* HomeViewModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelDefault.swift; sourceTree = "<group>"; };
+		0C184F7D27C580FF000E4EF7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0C184F7F27C58157000E4EF7 /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		0C184F8127C58232000E4EF7 /* GetEventsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventsUseCase.swift; sourceTree = "<group>"; };
 		0C184F8327C5823F000E4EF7 /* GetEventsUseCaseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventsUseCaseDefault.swift; sourceTree = "<group>"; };
@@ -142,6 +142,7 @@
 		0C184F7427C57CDF000E4EF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0C184F7227C57B94000E4EF7 /* EventRequest.swift */,
 				0C184F7527C57CEF000E4EF7 /* CheckIn.swift */,
 				0C184F7727C57E84000E4EF7 /* Event.swift */,
 			);
@@ -160,6 +161,7 @@
 		0C184F8E27C58C08000E4EF7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0C184F8C27C588EB000E4EF7 /* HomeView.swift */,
 				0C184F8F27C5A2B8000E4EF7 /* EventTableViewCell.swift */,
 			);
 			path = Components;
@@ -274,7 +276,7 @@
 		0CB0727727C5605B0084B2E9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0C184F7D27C580FF000E4EF7 /* HomeViewModelDefault.swift */,
+				0C184F7D27C580FF000E4EF7 /* HomeViewModel.swift */,
 				0C184F9127C5A586000E4EF7 /* HomeTableViewCellViewModel.swift */,
 			);
 			path = ViewModel;
@@ -283,9 +285,8 @@
 		0CB0727827C560600084B2E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0C184F8E27C58C08000E4EF7 /* Components */,
 				0CB0724527C55FB00084B2E9 /* HomeViewController.swift */,
-				0C184F8C27C588EB000E4EF7 /* HomeView.swift */,
+				0C184F8E27C58C08000E4EF7 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -315,7 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				0C184F7427C57CDF000E4EF7 /* Models */,
-				0C184F7227C57B94000E4EF7 /* EventRequest.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -529,7 +529,7 @@
 				0C184F7827C57E84000E4EF7 /* Event.swift in Sources */,
 				0CB0724627C55FB10084B2E9 /* HomeViewController.swift in Sources */,
 				0CB0728427C56A890084B2E9 /* Request.swift in Sources */,
-				0C184F7E27C580FF000E4EF7 /* HomeViewModelDefault.swift in Sources */,
+				0C184F7E27C580FF000E4EF7 /* HomeViewModel.swift in Sources */,
 				0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */,
 				0C184F8227C58232000E4EF7 /* GetEventsUseCase.swift in Sources */,
 				0C184F8827C5863F000E4EF7 /* MainCoordinator.swift in Sources */,

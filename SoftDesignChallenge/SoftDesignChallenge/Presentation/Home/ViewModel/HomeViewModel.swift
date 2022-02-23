@@ -19,11 +19,13 @@ class HomeViewModel {
   }
   
   func getEvents() {
-    useCase.getEvents(service: EventRequest.getEvents).subscribe { events in
-      self.events.onNext(events)
-    } onError: { error in
-      self.error.onNext((error as? NetworkErrors)?.message ?? "Unknown")
-    }.disposed(by: disposeBag)
+    useCase.getEvents(service: EventRequest.getEvents)
+      .subscribe(onNext: {[weak self] events in
+        self?.events.onNext(events)
+        self?.events.onCompleted()
+      }, onError: {[weak self] error in
+        self?.error.onNext((error as? NetworkErrors)?.message ?? "Unknown")
+      }).disposed(by: disposeBag)
   }
   
 }

@@ -50,16 +50,24 @@ class HomeView: UIView, ViewCodable {
   }
   
   func bindUI() {
+    bindTableView()
+    
+    viewModel.error.subscribe(onNext: {[weak self] error in
+      print(error)
+    })
+    
+    viewModel.getEvents()
+  }
+  
+  private func bindTableView() {
     viewModel.events.bind(to: tableView.rx.items(cellIdentifier: EventTableViewCell.identifier, cellType: EventTableViewCell.self))
     { (row, event, cell) in
       cell.setup(title: event.title, imageUrl: event.image)
     }.disposed(by: disposeBag)
     
-    tableView.rx.modelSelected(EventTableViewCell.self).subscribe(onNext: { item in
-        print("SelectedItem: \(item.title)")
+    tableView.rx.modelSelected(Event.self).subscribe(onNext: { event in
+        print("SelectedItem: \(event.title)")
     }).disposed(by: disposeBag)
-    
-    viewModel.getEvents()
   }
   
 }
