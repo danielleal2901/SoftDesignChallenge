@@ -16,6 +16,7 @@ class EventDetailViewController: BaseViewController, ViewCodable {
   private lazy var detailView: EventDetailView = {
     let view = EventDetailView(event: event)
     view.translatesAutoresizingMaskIntoConstraints = false
+    view.outputDelegate = self
     return view
   }()
   
@@ -48,9 +49,6 @@ class EventDetailViewController: BaseViewController, ViewCodable {
       detailView.topAnchor.constraint(equalTo: view.topAnchor),
       detailView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ])
-  }
-
-  func applyAdditionalConfiguration() {
   }
   
 }

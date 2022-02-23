@@ -39,9 +39,7 @@ class EventsViewController: BaseViewController, ViewCodable {
   func applyAdditionalConfiguration() {
     view.backgroundColor = .white
     navigationItem.title = "Events Finder"
-    navigationItem.hidesSearchBarWhenScrolling = false
     navigationController?.navigationBar.prefersLargeTitles = true
-    definesPresentationContext = true
   }
   
 }

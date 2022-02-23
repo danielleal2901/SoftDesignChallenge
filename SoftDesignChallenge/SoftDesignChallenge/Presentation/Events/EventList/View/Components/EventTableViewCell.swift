@@ -15,12 +15,12 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
   var event: Event? {
     didSet {
       if (event?.loadedImage == nil) {
-          viewModel.getImage(imageUrl: event?.image ?? "")
+        viewModel.getImage(imageUrl: event?.image ?? "")
       }
       eventTitle.text = event?.title ?? ""
     }
   }
-
+  
   let viewModel = EventsTableViewCellViewModel()
   let disposeBag = DisposeBag()
   
@@ -34,9 +34,8 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
     let image = UIImageView()
     image.contentMode = .scaleAspectFill
     image.translatesAutoresizingMaskIntoConstraints = false
-    image.layer.cornerRadius = 10.0
-    image.layer.masksToBounds = true
     image.clipsToBounds = true
+//    image.layer.masksToBounds = false
     return image
   }()
   
@@ -66,10 +65,10 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
   func addConstraints() {
     NSLayoutConstraint.activate([
       eventImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-      eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.25),
+      eventImage.widthAnchor.constraint(equalToConstant: 70),
+      eventImage.heightAnchor.constraint(equalToConstant: 70),
       eventImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-      eventImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
-
+      
       eventTitle.leadingAnchor.constraint(equalTo: eventImage.trailingAnchor, constant: 10),
       eventTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
       eventTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
@@ -91,11 +90,18 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
       .asObservable()
       .subscribe(onNext: {[weak self] image in
         self?.event?.setImage(image)
-        self?.eventImage.image = image
+        self?.eventImage.maskCircle(anyImage: image)
         self?.activityIndicator.stopAnimating()
         self?.activityIndicator.removeFromSuperview()
       }).disposed(by: disposeBag)
     
+//    eventImage.rx.observe(CGRect.self, #keyPath(UIView.bounds))
+//      .observe(on: MainScheduler.instance)
+//      .distinctUntilChanged()
+//      .subscribe(onNext: {[weak self] bounds in
+//        self?.eventImage.layer.cornerRadius = (bounds?.width ?? 0 / 2)
+//      })
+//      .disposed(by: disposeBag)
   }
   
   func setup(event: Event) {

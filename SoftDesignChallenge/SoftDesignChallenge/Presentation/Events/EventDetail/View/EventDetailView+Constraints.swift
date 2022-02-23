@@ -1,5 +1,5 @@
 //
-//  EventDetail+Constraints.swift
+//  EventDetailView+Constraints.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 23/02/22.
@@ -38,8 +38,8 @@ extension EventDetailView {
     [
       eventImage.topAnchor.constraint(equalTo: contentView.topAnchor),
       eventImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
-      eventImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3)
+      eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.8),
+      eventImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.4)
     ]
   }
   
@@ -48,19 +48,23 @@ extension EventDetailView {
       verticalStack.topAnchor.constraint(equalTo: eventImage.bottomAnchor, constant: 20),
       verticalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
       verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-      dateLabel.widthAnchor.constraint(equalTo: verticalStack.widthAnchor)
+      dateLabel.widthAnchor.constraint(equalTo: verticalStack.widthAnchor),
     ]
-    
   }
-  
+
   func mapConstraints() -> [NSLayoutConstraint] {
-    [
-      mapView.topAnchor.constraint(greaterThanOrEqualTo: verticalStack.bottomAnchor, constant: 20),
+    
+    let constraints = [
+      mapView.heightAnchor.constraint(greaterThanOrEqualToConstant: 400),
       mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-      mapView.heightAnchor.constraint(equalToConstant: 400),
-      mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-      mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+      mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+      mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
     ]
     
+    mapNormalTopConstraint = mapView.topAnchor.constraint(greaterThanOrEqualTo: verticalStack.bottomAnchor, constant: 30)
+    mapNormalTopConstraint?.isActive = true
+
+    mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: topAnchor)    
+    return constraints
   }
 }

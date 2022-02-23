@@ -7,13 +7,15 @@
 
 import Foundation
 import UIKit
-import MapKit
 import CoreLocation
 
 class EventDetailView: UIView, ViewCodable {
   //MARK: Variables
   let event: Event
-  
+  weak var outputDelegate: EventDetailViewOutputDelegate?
+  var mapNormalTopConstraint: NSLayoutConstraint?
+  var mapFullscreenTopConstraint: NSLayoutConstraint?
+
   //MARK: Layout
   let scrollView : UIScrollView = {
     let scroll = UIScrollView()
@@ -77,12 +79,13 @@ class EventDetailView: UIView, ViewCodable {
     return image
   }()
   
-  let mapView: MKMapView = {
-    let map = MKMapView()
+  lazy var mapView: EventMapView = {
+    let map = EventMapView(event: event)
+    map.outputDelegate = self
     map.translatesAutoresizingMaskIntoConstraints = false
     return map
   }()
-  
+    
   //MARK: Initializers
   init(event: Event) {
     self.event = event
@@ -96,14 +99,6 @@ class EventDetailView: UIView, ViewCodable {
   }
   
   //MARK: Methods
-  override func didMoveToSuperview() {
-    super.didMoveToSuperview()
-    
-    DispatchQueue.main.async {
-      self.updateLocationOnMap(to: CLLocation(latitude: self.event.latitude, longitude: self.event.longitude), with: self.event.title)
-    }
-  }
-  
   func addHierarchy() {
     addSubview(scrollView)
     scrollView.addSubview(contentView)
@@ -131,14 +126,5 @@ class EventDetailView: UIView, ViewCodable {
     backgroundColor = .white
   }
   
-  private func updateLocationOnMap(to location: CLLocation, with title: String?) {
-      let point = MKPointAnnotation()
-      point.title = title
-      point.coordinate = location.coordinate
-      self.mapView.addAnnotation(point)
-
-      let viewRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
-      self.mapView.setRegion(viewRegion, animated: true)
-  }
 
 }

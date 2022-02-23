@@ -29,7 +29,7 @@ class EventsView: UIView, ViewCodable {
   let tableView: UITableView = {
     let tableView = UITableView()
     tableView.register(EventTableViewCell.self, forCellReuseIdentifier: EventTableViewCell.identifier)
-    tableView.rowHeight = 60
+    tableView.rowHeight = 80
     tableView.contentMode = .scaleAspectFill
     tableView.translatesAutoresizingMaskIntoConstraints = false
     return tableView
@@ -85,7 +85,6 @@ class EventsView: UIView, ViewCodable {
       errorView.centerXAnchor.constraint(equalTo: centerXAnchor),
       errorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
 
-      
       loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
       loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
       loadingView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
