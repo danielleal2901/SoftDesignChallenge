@@ -10,7 +10,7 @@ import UIKit
 
 extension EventDetailView {
   func scrollViewConstraints() -> [NSLayoutConstraint] {
-    return [
+    [
       scrollView.topAnchor.constraint(equalTo: topAnchor),
       scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
       scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -35,7 +35,7 @@ extension EventDetailView {
   }
   
   func eventImageConstraints() -> [NSLayoutConstraint] {
-    return  [
+    [
       eventImage.topAnchor.constraint(equalTo: contentView.topAnchor),
       eventImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
       eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
@@ -44,7 +44,6 @@ extension EventDetailView {
   }
   
   func verticalStackConstraints() -> [NSLayoutConstraint] {
-    return
     [
       verticalStack.topAnchor.constraint(equalTo: eventImage.bottomAnchor, constant: 20),
       verticalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
@@ -54,7 +53,6 @@ extension EventDetailView {
   }
   
   func mapConstraints() -> [NSLayoutConstraint] {
-    return
     [
       mapView.topAnchor.constraint(greaterThanOrEqualTo: verticalStack.bottomAnchor, constant: 20),
       mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

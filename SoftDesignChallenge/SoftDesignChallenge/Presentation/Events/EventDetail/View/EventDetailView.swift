@@ -70,7 +70,7 @@ class EventDetailView: UIView, ViewCodable {
     return image
   }()
   
-  lazy var mapView: MKMapView = {
+  let mapView: MKMapView = {
     let map = MKMapView()
     map.translatesAutoresizingMaskIntoConstraints = false
     return map

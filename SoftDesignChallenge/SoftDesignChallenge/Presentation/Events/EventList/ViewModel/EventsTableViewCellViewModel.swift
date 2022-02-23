@@ -10,16 +10,18 @@ import RxSwift
 import UIKit
 
 class EventsTableViewCellViewModel {
-  let imageUseCase: GetImageUseCase
   let image = PublishSubject<UIImage>()
   let disposeBag = DisposeBag()
-
-  init(imageUseCase: GetImageUseCase = GetImageUseCaseDefault()){
-    self.imageUseCase = imageUseCase
+  
+  init(){
   }
   
   func getImage(imageUrl: String) {
-    imageUseCase.getImage(service: ImageRequest.getEventImage(path: imageUrl))
-      .compactMap({UIImage(data: $0)}).bind(to: image).disposed(by: disposeBag)
+    let observable: Observable<Data> = NetworkManager.shared.request(service: ImageRequest.getEventImage(path: imageUrl))
+    
+    observable
+      .compactMap({UIImage(data: $0)})
+      .bind(to: image)
+      .disposed(by: disposeBag)
   }
 }
