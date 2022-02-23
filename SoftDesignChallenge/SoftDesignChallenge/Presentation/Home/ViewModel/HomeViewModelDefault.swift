@@ -1,5 +1,5 @@
 //
-//  HomeViewModelDefault.swift
+//  HomeViewModel.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 22/02/22.
@@ -8,13 +8,13 @@
 import Foundation
 import RxSwift
 
-class HomeViewModelDefault: HomeViewModel {
+class HomeViewModel {
   let useCase: GetEventsUseCase
   let events = PublishSubject<[Event]>()
   let error = PublishSubject<String>()
   let disposeBag = DisposeBag()
   
-  required init(useCase: GetEventsUseCase = GetEventsUseCaseDefault()) {
+  init(useCase: GetEventsUseCase = GetEventsUseCaseDefault()) {
     self.useCase = useCase
   }
   

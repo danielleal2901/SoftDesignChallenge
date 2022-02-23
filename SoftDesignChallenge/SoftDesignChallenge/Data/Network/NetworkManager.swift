@@ -46,11 +46,16 @@ final class NetworkManager {
   public func request<T: Decodable> (
     service: Request) -> Observable<T> {
       
-      guard let url = URL(string: service.path) else {
-        return Observable<T>.error(NetworkErrors.invalidUrl)
+      return .create { observer in
+        guard let url = URL(string: service.path) else {
+          observer.onError(NetworkErrors.invalidUrl)
+          return Disposables.create()
+        }
+        
+        return self.request(url, method: service.method, parameters: service.params, headers: service.headers)
+        .bind(to: observer)
       }
-      
-      return request(url, method: service.method, parameters: service.params, headers: service.headers)
+
     }
   
   

@@ -13,7 +13,6 @@
 		0C184F7327C57B95000E4EF7 /* EventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7227C57B94000E4EF7 /* EventRequest.swift */; };
 		0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7527C57CEF000E4EF7 /* CheckIn.swift */; };
 		0C184F7827C57E84000E4EF7 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7727C57E84000E4EF7 /* Event.swift */; };
-		0C184F7C27C580DF000E4EF7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7B27C580DE000E4EF7 /* HomeViewModel.swift */; };
 		0C184F7E27C580FF000E4EF7 /* HomeViewModelDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7D27C580FF000E4EF7 /* HomeViewModelDefault.swift */; };
 		0C184F8027C58157000E4EF7 /* ViewCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F7F27C58157000E4EF7 /* ViewCodable.swift */; };
 		0C184F8227C58232000E4EF7 /* GetEventsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8127C58232000E4EF7 /* GetEventsUseCase.swift */; };
@@ -22,6 +21,11 @@
 		0C184F8827C5863F000E4EF7 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8727C5863F000E4EF7 /* MainCoordinator.swift */; };
 		0C184F8A27C586BE000E4EF7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8927C586BE000E4EF7 /* BaseViewController.swift */; };
 		0C184F8D27C588EB000E4EF7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8C27C588EB000E4EF7 /* HomeView.swift */; };
+		0C184F9027C5A2B9000E4EF7 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F8F27C5A2B8000E4EF7 /* EventTableViewCell.swift */; };
+		0C184F9227C5A586000E4EF7 /* HomeTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F9127C5A586000E4EF7 /* HomeTableViewCellViewModel.swift */; };
+		0C184F9427C5A5B5000E4EF7 /* GetImageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F9327C5A5B5000E4EF7 /* GetImageUseCase.swift */; };
+		0C184F9627C5A605000E4EF7 /* GetImageUseCaseDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F9527C5A605000E4EF7 /* GetImageUseCaseDefault.swift */; };
+		0C184F9827C5A705000E4EF7 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184F9727C5A705000E4EF7 /* ImageRequest.swift */; };
 		0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724127C55FB00084B2E9 /* AppDelegate.swift */; };
 		0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */; };
 		0CB0724627C55FB10084B2E9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724527C55FB00084B2E9 /* HomeViewController.swift */; };
@@ -59,7 +63,6 @@
 		0C184F7227C57B94000E4EF7 /* EventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRequest.swift; sourceTree = "<group>"; };
 		0C184F7527C57CEF000E4EF7 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		0C184F7727C57E84000E4EF7 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		0C184F7B27C580DE000E4EF7 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0C184F7D27C580FF000E4EF7 /* HomeViewModelDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelDefault.swift; sourceTree = "<group>"; };
 		0C184F7F27C58157000E4EF7 /* ViewCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCodable.swift; sourceTree = "<group>"; };
 		0C184F8127C58232000E4EF7 /* GetEventsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventsUseCase.swift; sourceTree = "<group>"; };
@@ -68,6 +71,11 @@
 		0C184F8727C5863F000E4EF7 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		0C184F8927C586BE000E4EF7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0C184F8C27C588EB000E4EF7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0C184F8F27C5A2B8000E4EF7 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		0C184F9127C5A586000E4EF7 /* HomeTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCellViewModel.swift; sourceTree = "<group>"; };
+		0C184F9327C5A5B5000E4EF7 /* GetImageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageUseCase.swift; sourceTree = "<group>"; };
+		0C184F9527C5A605000E4EF7 /* GetImageUseCaseDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImageUseCaseDefault.swift; sourceTree = "<group>"; };
+		0C184F9727C5A705000E4EF7 /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		0CB0723E27C55FB00084B2E9 /* SoftDesignChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftDesignChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB0724127C55FB00084B2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 		0C184F8E27C58C08000E4EF7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0C184F8F27C5A2B8000E4EF7 /* EventTableViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,8 +223,11 @@
 		0CB0727127C55FC50084B2E9 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				0C184F9727C5A705000E4EF7 /* ImageRequest.swift */,
 				0C184F8127C58232000E4EF7 /* GetEventsUseCase.swift */,
 				0C184F8327C5823F000E4EF7 /* GetEventsUseCaseDefault.swift */,
+				0C184F9327C5A5B5000E4EF7 /* GetImageUseCase.swift */,
+				0C184F9527C5A605000E4EF7 /* GetImageUseCaseDefault.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -262,8 +274,8 @@
 		0CB0727727C5605B0084B2E9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0C184F7B27C580DE000E4EF7 /* HomeViewModel.swift */,
 				0C184F7D27C580FF000E4EF7 /* HomeViewModelDefault.swift */,
+				0C184F9127C5A586000E4EF7 /* HomeTableViewCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -511,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C184F9627C5A605000E4EF7 /* GetImageUseCaseDefault.swift in Sources */,
 				0C184F8A27C586BE000E4EF7 /* BaseViewController.swift in Sources */,
 				0C184F7127C575D2000E4EF7 /* Encodable+dictionary.swift in Sources */,
 				0C184F7827C57E84000E4EF7 /* Event.swift in Sources */,
@@ -520,16 +533,19 @@
 				0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */,
 				0C184F8227C58232000E4EF7 /* GetEventsUseCase.swift in Sources */,
 				0C184F8827C5863F000E4EF7 /* MainCoordinator.swift in Sources */,
+				0C184F9427C5A5B5000E4EF7 /* GetImageUseCase.swift in Sources */,
+				0C184F9027C5A2B9000E4EF7 /* EventTableViewCell.swift in Sources */,
 				0C184F6B27C56D82000E4EF7 /* NetworkManager.swift in Sources */,
 				0C184F7327C57B95000E4EF7 /* EventRequest.swift in Sources */,
-				0C184F7C27C580DF000E4EF7 /* HomeViewModel.swift in Sources */,
 				0C184F8627C58612000E4EF7 /* Coordinator.swift in Sources */,
 				0C184F8D27C588EB000E4EF7 /* HomeView.swift in Sources */,
 				0C184F6D27C57371000E4EF7 /* NetworkErrors.swift in Sources */,
 				0C184F8427C5823F000E4EF7 /* GetEventsUseCaseDefault.swift in Sources */,
+				0C184F9827C5A705000E4EF7 /* ImageRequest.swift in Sources */,
 				0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */,
 				0C184F8027C58157000E4EF7 /* ViewCodable.swift in Sources */,
 				0CB0728627C56AB00084B2E9 /* HTTPMethod.swift in Sources */,
+				0C184F9227C5A586000E4EF7 /* HomeTableViewCellViewModel.swift in Sources */,
 				0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,7 +11,7 @@ import RxSwift
 
 class HomeView: UIView, ViewCodable {
   //MARK: Variables
-  let viewModel: HomeViewModel
+  let viewModel = HomeViewModel()
   let disposeBag = DisposeBag()
   private var data: [Event] = [] {
     didSet {
@@ -20,25 +20,17 @@ class HomeView: UIView, ViewCodable {
   }
   
   //MARK: Layout
-  private lazy var titleLabel: UILabel = {
-    let label = UILabel()
-    label.text = "Eventos"
-    label.font = UIFont(name: "SF Pro", size: 25)
-    label.translatesAutoresizingMaskIntoConstraints = false
-    return label
-  }()
-  
   private lazy var tableView: UITableView = {
     let tableView = UITableView()
     tableView.dataSource = self
     tableView.translatesAutoresizingMaskIntoConstraints = false
+    tableView.register(EventTableViewCell.self, forCellReuseIdentifier: EventTableViewCell.identifier)
+    tableView.rowHeight = UITableView.automaticDimension
     return tableView
   }()
   
   //MARK: Initializers
-  init(viewModel: HomeViewModel = HomeViewModelDefault()) {
-    self.viewModel = viewModel
-    
+  init() {
     super.init(frame: .zero)
     setupView()
   }
@@ -48,20 +40,15 @@ class HomeView: UIView, ViewCodable {
   }
   
   func addHierarchy() {
-    addSubview(titleLabel)
     addSubview(tableView)
   }
   
   func addConstraints() {
     NSLayoutConstraint.activate([
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-    ])
-    NSLayoutConstraint.activate([
-        tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-        tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-        tableView.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 20),
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+      tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+      tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+      tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+      tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
   }
   
@@ -70,14 +57,14 @@ class HomeView: UIView, ViewCodable {
   
   func bindUI() {
     viewModel.getEvents()
-
-    viewModel.events.subscribe {[weak self] events in
-      self?.data = events
-    }.disposed(by: disposeBag)
     
-    viewModel.error.subscribe {[weak self] error in
+    viewModel.events.subscribe (onNext: {[weak self] events in
+      self?.data = events
+    }).disposed(by: disposeBag)
+    
+    viewModel.error.subscribe (onNext: {[weak self] error in
       print(error)
-    }.disposed(by: disposeBag)
+    }).disposed(by: disposeBag)
   }
   
 }
@@ -92,8 +79,11 @@ extension HomeView: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    return UITableViewCell()
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: EventTableViewCell.identifier, for: indexPath) as? EventTableViewCell
+    else {
+      return UITableViewCell()
+    }
+    cell.setup(title: data[indexPath.row].title, imageUrl: data[indexPath.row].image)
+    return cell
   }
-  
-  
 }
