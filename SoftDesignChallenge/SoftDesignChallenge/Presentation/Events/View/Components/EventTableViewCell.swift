@@ -14,7 +14,7 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
   
   var title: String?
   var imageUrl: String?
-  let viewModel = HomeTableViewCellViewModel()
+  let viewModel = EventsTableViewCellViewModel()
   let disposeBag = DisposeBag()
   
   private lazy var activityIndicator: UIActivityIndicatorView = {
@@ -59,15 +59,11 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
       eventTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
       eventTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
       eventTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-    ])
-    
-    NSLayoutConstraint.activate([
+
       eventImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
       eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.2),
       eventImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-    ])
 
-    NSLayoutConstraint.activate([
       activityIndicator.leadingAnchor.constraint(equalTo: eventImage.leadingAnchor),
       activityIndicator.trailingAnchor.constraint(equalTo: eventImage.trailingAnchor),
       activityIndicator.topAnchor.constraint(equalTo: eventImage.topAnchor),

@@ -8,58 +8,61 @@
 import Foundation
 import UIKit
 import MapKit
+import CoreLocation
 
 class EventDetailView: UIView, ViewCodable {
   //MARK: Variables
   let event: Event
   
   //MARK: Layout
-  private let scrollView : UIScrollView = {
+  let scrollView : UIScrollView = {
     let scroll = UIScrollView()
     scroll.translatesAutoresizingMaskIntoConstraints = false
     return scroll
   }()
   
-  private let contentView : UIView = {
+  let contentView : UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
-  private let verticalStack: UIStackView = {
+  let verticalStack: UIStackView = {
     let stack = UIStackView()
     stack.axis = .vertical
     stack.alignment = .center
     stack.distribution = .fillProportionally
+    stack.spacing = 10
     stack.translatesAutoresizingMaskIntoConstraints = false
     return stack
   }()
   
-  private lazy var titleLabel: UILabel = {
+  lazy var titleLabel: UILabel = {
     let label = UILabel()
     label.text = event.title
-    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textAlignment = .center
     label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
-  private lazy var descriptionLabel: UILabel = {
+  lazy var descriptionLabel: UILabel = {
     let label = UILabel()
     label.text = event.welcomeDescription
-    label.translatesAutoresizingMaskIntoConstraints = false
+    label.textAlignment = .justified
     label.numberOfLines = 0
+    label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
   
-  private lazy var dateLabel: UILabel = {
+  lazy var dateLabel: UILabel = {
     let label = UILabel()
     label.text = "29/01/2000"
     label.translatesAutoresizingMaskIntoConstraints = false
-    label.numberOfLines = 0
     return label
   }()
   
-  private let eventImage: UIImageView = {
+  let eventImage: UIImageView = {
     let image = UIImageView()
     image.contentMode = .scaleAspectFit
     image.backgroundColor = .red
@@ -67,9 +70,8 @@ class EventDetailView: UIView, ViewCodable {
     return image
   }()
   
-  private let mapView: MKMapView = {
+  lazy var mapView: MKMapView = {
     let map = MKMapView()
-    map.backgroundColor = .yellow
     map.translatesAutoresizingMaskIntoConstraints = false
     return map
   }()
@@ -87,6 +89,14 @@ class EventDetailView: UIView, ViewCodable {
   }
   
   //MARK: Methods
+  override func didMoveToSuperview() {
+    super.didMoveToSuperview()
+    
+    DispatchQueue.global(qos: .userInitiated).async {
+      self.updateLocationOnMap(to: CLLocation(latitude: self.event.latitude, longitude: self.event.longitude), with: self.event.title)
+    }
+  }
+  
   func addHierarchy() {
     addSubview(scrollView)
     scrollView.addSubview(contentView)
@@ -96,48 +106,32 @@ class EventDetailView: UIView, ViewCodable {
     
     verticalStack.addArrangedSubview(titleLabel)
     verticalStack.addArrangedSubview(descriptionLabel)
+    verticalStack.addArrangedSubview(dateLabel)
   }
   
   func addConstraints() {
-    NSLayoutConstraint.activate([
-      scrollView.topAnchor.constraint(equalTo: topAnchor),
-      scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-      
-      contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-      contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-      contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-      contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-      contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-      contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
-      
-      eventImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-      eventImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      eventImage.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
-      eventImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.3),
-      
-      verticalStack.topAnchor.constraint(equalTo: eventImage.bottomAnchor, constant: 20),
-      verticalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
-      verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-      
-      mapView.topAnchor.constraint(greaterThanOrEqualTo: descriptionLabel.bottomAnchor, constant: 50),
-      mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-      mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-      mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-    ])
+    var constraints = [NSLayoutConstraint]()
+    constraints.append(contentsOf: scrollViewConstraints())
+    constraints.append(contentsOf: contentViewConstraints())
+    constraints.append(contentsOf: eventImageConstraints())
+    constraints.append(contentsOf: verticalStackConstraints())
+    constraints.append(contentsOf: mapConstraints())
     
-    let contentHeight = contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
-    contentHeight.priority = .defaultLow
-    contentHeight.isActive = true
+    NSLayoutConstraint.activate(constraints)
   }
   
   func applyAdditionalConfiguration() {
     backgroundColor = .white
   }
   
-  func bindUI() {
-    
+  private func updateLocationOnMap(to location: CLLocation, with title: String?) {
+      let point = MKPointAnnotation()
+      point.title = title
+      point.coordinate = location.coordinate
+      self.mapView.addAnnotation(point)
+
+      let viewRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+      self.mapView.setRegion(viewRegion, animated: true)
   }
 
 }

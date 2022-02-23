@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  EventsViewModel.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 22/02/22.

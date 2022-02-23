@@ -1,5 +1,5 @@
 //
-//  HomeTableViewCellViewModel.swift
+//  EventsTableViewCellViewModel.swift
 //  SoftDesignChallenge
 //
 //  Created by ACT on 22/02/22.
@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import UIKit
 
-class HomeTableViewCellViewModel {
+class EventsTableViewCellViewModel {
   let imageUseCase: GetImageUseCase
   let image = PublishSubject<UIImage>()
   let disposeBag = DisposeBag()
