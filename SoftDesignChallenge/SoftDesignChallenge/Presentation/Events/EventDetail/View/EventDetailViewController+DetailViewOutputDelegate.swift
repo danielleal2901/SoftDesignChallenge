@@ -2,7 +2,7 @@
 //  EventDetailViewController+DetailViewOutputDelegate.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 23/02/22.
+//  Created by Daniel Leal on 23/02/22.
 //
 
 import Foundation

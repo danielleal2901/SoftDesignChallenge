@@ -167,9 +167,9 @@
 			children = (
 				0C184F7F27C58157000E4EF7 /* ViewCodable.swift */,
 				0C184F8927C586BE000E4EF7 /* BaseViewController.swift */,
-				0C184F6F27C575B4000E4EF7 /* Extensions */,
 				0CB4E86127C6772800949D82 /* ImageDescriptor.swift */,
 				0CB4E86327C6778700949D82 /* BundleIdentifiable.swift */,
+				0C184F6F27C575B4000E4EF7 /* Extensions */,
 			);
 			path = Commons;
 			sourceTree = "<group>";

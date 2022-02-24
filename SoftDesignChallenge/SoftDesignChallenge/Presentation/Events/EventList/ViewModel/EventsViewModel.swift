@@ -2,7 +2,7 @@
 //  EventsViewModel.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
@@ -11,6 +11,7 @@ import RxCocoa
 import UIKit
 
 class EventsViewModel {
+  //MARK: Properties
   private let searchSubject = PublishSubject<String>()
   var searchObserver: AnyObserver<String> {
     return searchSubject.asObserver()
@@ -37,9 +38,11 @@ class EventsViewModel {
   var allEvents: [Event] = []
   let disposeBag = DisposeBag()
   
+  //MARK: Initializers
   init() {
   }
   
+  //MARK: Methods
   func getEvents() {
     let observable: Observable<[Event]> = NetworkManager.shared.request(service: EventRequest.getEvents)
     

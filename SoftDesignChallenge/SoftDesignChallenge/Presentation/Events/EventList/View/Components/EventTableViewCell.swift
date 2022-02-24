@@ -2,7 +2,7 @@
 //  EventTableViewCell.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
   var event: Event? {
     didSet {
       if (event?.loadedImage == nil) {
-        viewModel.getImage(imageUrl: event?.image ?? "")
+        viewModel.getImage(imageUrl: event?.imageURL ?? "")
       }
       eventTitle.text = event?.title ?? ""
     }

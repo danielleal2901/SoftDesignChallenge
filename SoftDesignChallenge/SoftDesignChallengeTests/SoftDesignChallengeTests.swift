@@ -2,7 +2,7 @@
 //  SoftDesignChallengeTests.swift
 //  SoftDesignChallengeTests
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import XCTest

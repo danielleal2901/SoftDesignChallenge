@@ -2,7 +2,7 @@
 //  EventMapView.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 23/02/22.
+//  Created by Daniel Leal on 23/02/22.
 //
 
 import Foundation
@@ -13,10 +13,9 @@ import CoreLocation
 class EventMapView: UIView, ViewCodable, ImageRetriever {
   typealias ImageDescriptorType = EventDetailImage
 
-  //MARK: Variables
+  //MARK: Properties
   let event: Event
   private var mapHeightConstraint: NSLayoutConstraint?
-
   private var isMapExpanded: Bool = false {
     didSet {
       closeMap.isHidden = !isMapExpanded

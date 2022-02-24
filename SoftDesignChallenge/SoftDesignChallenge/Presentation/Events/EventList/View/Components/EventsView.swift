@@ -2,7 +2,7 @@
 //  EventsView.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class EventsView: UIView, ViewCodable {
-  //MARK: Variables
+  //MARK: Properties
   let viewModel: EventsViewModel
   let disposeBag = DisposeBag()
   weak var outputDelegate: EventsViewOutputDelegate?

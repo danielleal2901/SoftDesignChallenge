@@ -2,17 +2,18 @@
 //  Event.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
 import UIKit
 
 class Event: Decodable {
+  //MARK: Properties
   let people: [String]
   let timestamp: Int
   let welcomeDescription: String
-  let image: String
+  let imageURL: String
   var loadedImage: UIImage?
   let longitude : Double
   let latitude : Double
@@ -22,17 +23,19 @@ class Event: Decodable {
   let date: Date
   
   enum CodingKeys: String, CodingKey {
-    case people, image, longitude, latitude, price, title, id
+    case people, longitude, latitude, price, title, id
+    case imageURL = "image"
     case timestamp = "date"
     case welcomeDescription = "description"
   }
   
+  //MARK: Initializers
   required init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     people = try values.decode([String].self, forKey: .people)
     timestamp = try values.decode(Int.self, forKey: .timestamp)
     welcomeDescription = try values.decode(String.self, forKey: .welcomeDescription)
-    image = try values.decode(String.self, forKey: .image)
+    imageURL = try values.decode(String.self, forKey: .imageURL)
     longitude = try values.decode(Double.self, forKey: .longitude)
     latitude = try values.decode(Double.self, forKey: .latitude)
     price = try values.decode(Double.self, forKey: .price)
@@ -43,6 +46,7 @@ class Event: Decodable {
     date = Date(timeIntervalSince1970: epochTime)
   }
   
+  //MARK: Methods
   func setImage(_ image: UIImage){
     self.loadedImage = image
   }

@@ -2,7 +2,7 @@
 //  EventDetailView.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
@@ -138,6 +138,4 @@ class EventDetailView: UIView, ViewCodable {
   func applyAdditionalConfiguration() {
     backgroundColor = .white
   }
-  
-
 }

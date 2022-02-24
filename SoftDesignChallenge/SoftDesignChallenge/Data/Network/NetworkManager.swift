@@ -2,7 +2,7 @@
 //  NetworkManager.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class NetworkManager {
-  //MARK: Variables
+  //MARK: Properties
   private let session: URLSession
   public static let shared = NetworkManager()
   
@@ -30,11 +30,11 @@ final class NetworkManager {
         do {
           let request = try self.setupRequest(url, method: method, parameters: parameters, headers: headers)
           return URLSession.shared.rx.data(request: request)
-          .map { data in
+            .map { data in
               try JSONDecoder().decode(T.self, from: data)
-          }
-          .observe(on: MainScheduler.asyncInstance)
-          .bind(to: observer)
+            }
+            .observe(on: MainScheduler.asyncInstance)
+            .bind(to: observer)
         } catch {
           observer.onError(error)
         }
@@ -43,9 +43,8 @@ final class NetworkManager {
       }
     }
   
-  public func request<T: Decodable> (
-    service: Request) -> Observable<T> {
-      
+  public func request<T: Decodable> (service: Request) -> Observable<T> {
+  
       return .create { observer in
         guard let url = URL(string: service.path) else {
           observer.onError(NetworkErrors.invalidUrl)
@@ -53,9 +52,9 @@ final class NetworkManager {
         }
         
         return self.request(url, method: service.method, parameters: service.params, headers: service.headers)
-        .bind(to: observer)
+          .bind(to: observer)
       }
-
+      
     }
   
   

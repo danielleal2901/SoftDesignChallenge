@@ -2,20 +2,23 @@
 //  MainCoordinator.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 22/02/22.
+//  Created by Daniel Leal on 22/02/22.
 //
 
 import Foundation
 import UIKit
 
 class MainCoordinator: Coordinator {
+  //MARK: Properties
   var childCoordinators: [Coordinator] = []
   var navigationController: UINavigationController
   
+  //MARK: Initializers
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
   }
   
+  //MARK: Methods
   func start() {
     startEventsFlow()
   }

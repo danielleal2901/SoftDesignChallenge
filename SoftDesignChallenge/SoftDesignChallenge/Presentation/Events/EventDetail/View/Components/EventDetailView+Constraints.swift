@@ -2,7 +2,7 @@
 //  EventDetailView+Constraints.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 23/02/22.
+//  Created by Daniel Leal on 23/02/22.
 //
 
 import Foundation
@@ -48,19 +48,15 @@ extension EventDetailView {
   }
   
   func verticalStackConstraints() -> [NSLayoutConstraint] {
-    let constraints =
     [
       verticalStack.topAnchor.constraint(equalTo: eventImage.bottomAnchor, constant: 20),
       verticalStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
       verticalStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
       dateLabel.widthAnchor.constraint(equalTo: verticalStack.widthAnchor),
     ]
-    
-    return constraints
   }
 
   func mapConstraints() -> [NSLayoutConstraint] {
-    
     let constraints = [
       mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
       mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

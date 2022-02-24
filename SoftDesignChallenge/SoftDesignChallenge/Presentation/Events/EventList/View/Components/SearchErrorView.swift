@@ -2,7 +2,7 @@
 //  SearchErrorView.swift
 //  SoftDesignChallenge
 //
-//  Created by ACT on 23/02/22.
+//  Created by Daniel Leal on 23/02/22.
 //
 
 import Foundation
@@ -34,9 +34,6 @@ class SearchErrorView: UIView, ViewCodable, ImageRetriever {
     let image = UIImageView(image: image(.warning))
     image.contentMode = .scaleAspectFit
     image.translatesAutoresizingMaskIntoConstraints = false
-    image.layer.cornerRadius = 10.0
-    image.layer.masksToBounds = true
-    image.clipsToBounds = true
     return image
   }()
   
