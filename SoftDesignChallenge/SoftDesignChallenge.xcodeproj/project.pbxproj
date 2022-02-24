@@ -30,6 +30,7 @@
 		0C184FA827C5C569000E4EF7 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA727C5C569000E4EF7 /* EventDetailViewModel.swift */; };
 		0C184FAA27C5DAD4000E4EF7 /* EventDetailView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */; };
 		0C184FAD27C5ECBA000E4EF7 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */; };
+		0C7EFEEC27C7A72100ED4C84 /* EventsCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7EFEEB27C7A72100ED4C84 /* EventsCoordinatorDelegate.swift */; };
 		0CB0724227C55FB00084B2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724127C55FB00084B2E9 /* AppDelegate.swift */; };
 		0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */; };
 		0CB0724627C55FB10084B2E9 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB0724527C55FB00084B2E9 /* EventsViewController.swift */; };
@@ -99,6 +100,7 @@
 		0C184FA727C5C569000E4EF7 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Constraints.swift"; sourceTree = "<group>"; };
 		0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
+		0C7EFEEB27C7A72100ED4C84 /* EventsCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		0CB0723E27C55FB00084B2E9 /* SoftDesignChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoftDesignChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CB0724127C55FB00084B2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CB0724327C55FB00084B2E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		0C184F8E27C58C08000E4EF7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0C184F8C27C588EB000E4EF7 /* EventsView.swift */,
 				0C184F8F27C5A2B8000E4EF7 /* EventTableViewCell.swift */,
 				0CB4E86B27C6877500949D82 /* LoadingView.swift */,
 				0CB4E86D27C687C900949D82 /* SearchErrorView.swift */,
@@ -316,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				0C184F9F27C5B7A6000E4EF7 /* EventsCoordinator.swift */,
+				0C7EFEEB27C7A72100ED4C84 /* EventsCoordinatorDelegate.swift */,
 				0C184FAB27C5E2A3000E4EF7 /* EventList */,
 				0CB0727527C5604F0084B2E9 /* EventDetail */,
 			);
@@ -335,7 +339,6 @@
 		0CB0727827C560600084B2E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0C184F8C27C588EB000E4EF7 /* EventsView.swift */,
 				0CB0724527C55FB00084B2E9 /* EventsViewController.swift */,
 				0C184F9B27C5B704000E4EF7 /* EventsViewOutputDelegate.swift */,
 				0C184F9D27C5B765000E4EF7 /* EventsViewController+OutputDelegate.swift */,
@@ -347,11 +350,7 @@
 		0CB0727927C560630084B2E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0C184FA427C5B991000E4EF7 /* EventDetailView.swift */,
-				0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */,
-				0CB4E87C27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift */,
 				0C184FA127C5B95E000E4EF7 /* EventDetailViewController.swift */,
-				0CB4E87327C6BBC800949D82 /* EventDetailViewOutputDelegate.swift */,
 				0CB4E87527C6BC0700949D82 /* EventDetailViewController+DetailViewOutputDelegate.swift */,
 				0CB4E87727C6C0B000949D82 /* Components */,
 			);
@@ -399,6 +398,10 @@
 		0CB4E87727C6C0B000949D82 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0C184FA427C5B991000E4EF7 /* EventDetailView.swift */,
+				0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */,
+				0CB4E87C27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift */,
+				0CB4E87327C6BBC800949D82 /* EventDetailViewOutputDelegate.swift */,
 				0CB4E87827C6C0BB00949D82 /* EventMapView.swift */,
 				0CB4E87A27C6C26E00949D82 /* EventMapViewOutputDelegate.swift */,
 			);
@@ -611,6 +614,7 @@
 				0CB4E86C27C6877500949D82 /* LoadingView.swift in Sources */,
 				0CB0728427C56A890084B2E9 /* Request.swift in Sources */,
 				0C184F7E27C580FF000E4EF7 /* EventsViewModel.swift in Sources */,
+				0C7EFEEC27C7A72100ED4C84 /* EventsCoordinatorDelegate.swift in Sources */,
 				0C184F7627C57CEF000E4EF7 /* CheckIn.swift in Sources */,
 				0C184F8827C5863F000E4EF7 /* MainCoordinator.swift in Sources */,
 				0CB4E86E27C687C900949D82 /* SearchErrorView.swift in Sources */,

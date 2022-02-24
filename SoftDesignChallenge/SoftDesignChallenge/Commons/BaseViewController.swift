@@ -16,5 +16,21 @@ class BaseViewController: UIViewController {
     
     print(String(describing: self))
   }
+  
+  func setLeftBarItem(image: UIImage) {
+    let menuBtn = UIButton(type: .custom)
+//    menuBtn.frame = CGRect(x: 0.0, y: 0.0, width: 23, height: 15)
+    menuBtn.setImage(image, for: .normal)
+    menuBtn.addTarget(self, action: #selector(backAction(_:)), for: UIControl.Event.touchUpInside)
+    
+    let menuBarItem = UIBarButtonItem(customView: menuBtn)
+    let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 24)
+    currWidth?.isActive = true
+    let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 24)
+    currHeight?.isActive = true
+    self.navigationItem.leftBarButtonItem = menuBarItem
+  }
+  
+  @objc func backAction(_ sender: Any){}
 
 }

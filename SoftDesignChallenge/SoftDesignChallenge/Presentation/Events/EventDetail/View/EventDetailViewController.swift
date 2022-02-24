@@ -8,21 +8,25 @@
 import Foundation
 import UIKit
 
-class EventDetailViewController: BaseViewController, ViewCodable {
-  //MARK: Variables
+class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever {
+  typealias ImageDescriptorType = EventDetailImage
+  
+  //MARK: Properties
   let event: Event
+  let viewModel: EventDetailViewModel
   
   //MARK: Layout
   private lazy var detailView: EventDetailView = {
-    let view = EventDetailView(event: event)
+    let view = EventDetailView(event: event, viewModel: viewModel)
     view.translatesAutoresizingMaskIntoConstraints = false
     view.outputDelegate = self
     return view
   }()
   
   //MARK: Initializers
-  init(event: Event){
+  init(event: Event, viewModel: EventDetailViewModel = EventDetailViewModel()){
     self.event = event
+    self.viewModel = viewModel
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -57,6 +61,17 @@ class EventDetailViewController: BaseViewController, ViewCodable {
   
   func applyAdditionalConfiguration() {
     view.backgroundColor = .white
+    
+    setupNavigationBar()
+  }
+  
+  @objc override func backAction(_ sender: Any){
+    (coordinator as? EventsCoordinator)?.didFinishDetail()
+  }
+  
+  private func setupNavigationBar() {
+    navigationController?.navigationBar.prefersLargeTitles = false
+    setLeftBarItem(image: image(.backArrow))
   }
   
 }

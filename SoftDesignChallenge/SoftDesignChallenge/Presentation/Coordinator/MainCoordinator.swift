@@ -17,16 +17,22 @@ class MainCoordinator: Coordinator {
   }
   
   func start() {
+    startEventsFlow()
+  }
+  
+  func finish() {}
+}
+
+extension MainCoordinator: EventsCoordinatorDelegate {
+  func startEventsFlow() {
     let coordinator = EventsCoordinator(navigationController: navigationController)
     childCoordinators.append(coordinator)
     
     coordinator.start()
   }
   
-}
-
-extension MainCoordinator {
-  func startHomeFlow() {
-    
+  func didFinishEventsFlow() {
+    navigationController.popToRootViewController(animated: true)
+    childCoordinators.removeAll(where: {$0 is EventsCoordinator})
   }
 }

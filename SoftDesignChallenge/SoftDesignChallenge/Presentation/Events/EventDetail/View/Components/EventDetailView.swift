@@ -10,8 +10,9 @@ import UIKit
 import CoreLocation
 
 class EventDetailView: UIView, ViewCodable {
-  //MARK: Variables
+  //MARK: Properties
   let event: Event
+  let viewModel: EventDetailViewModel
   weak var outputDelegate: EventDetailViewOutputDelegate?
   var mapNormalTopConstraint: NSLayoutConstraint?
   var mapNormalHeightConstraint: NSLayoutConstraint?
@@ -98,8 +99,9 @@ class EventDetailView: UIView, ViewCodable {
   }()
     
   //MARK: Initializers
-  init(event: Event) {
+  init(event: Event, viewModel: EventDetailViewModel = EventDetailViewModel()) {
     self.event = event
+    self.viewModel = viewModel
     
     super.init(frame: .zero)
     setupView()

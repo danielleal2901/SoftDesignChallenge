@@ -35,14 +35,14 @@ class EventsView: UIView, ViewCodable {
     return tableView
   }()
   
-  lazy var loadingView: LoadingView = {
+  let loadingView: LoadingView = {
     let view = LoadingView()
     view.isHidden = true
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
   
-  lazy var errorView: SearchErrorView = {
+  let errorView: SearchErrorView = {
     let view = SearchErrorView()
     view.isHidden = true
     view.translatesAutoresizingMaskIntoConstraints = false

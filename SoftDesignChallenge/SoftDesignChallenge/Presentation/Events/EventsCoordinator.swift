@@ -11,6 +11,7 @@ import UIKit
 class EventsCoordinator: Coordinator {
   var childCoordinators: [Coordinator] = []
   var navigationController: UINavigationController
+  weak var delegate: EventsCoordinatorDelegate?
   
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
@@ -18,6 +19,10 @@ class EventsCoordinator: Coordinator {
   
   func start() {
     navigationController.pushViewController(showEventsView(), animated: true)
+  }
+  
+  func finish() {
+    delegate?.didFinishEventsFlow()
   }
   
 }
@@ -32,7 +37,10 @@ extension EventsCoordinator {
   func showEventDetail(event: Event) {
     let controller = EventDetailViewController(event: event)
     controller.coordinator = self
-    navigationController.navigationBar.prefersLargeTitles = false
     navigationController.pushViewController(controller, animated: true)
+  }
+    
+  func didFinishDetail() {
+    navigationController.popViewController(animated: true)
   }
 }

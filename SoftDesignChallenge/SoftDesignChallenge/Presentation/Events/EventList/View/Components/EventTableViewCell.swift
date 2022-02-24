@@ -12,6 +12,7 @@ import RxSwift
 class EventTableViewCell: UITableViewCell, ViewCodable {
   static let identifier = String(describing: EventTableViewCell.self)
   
+  //MARK: Properties
   var event: Event? {
     didSet {
       if (event?.loadedImage == nil) {
@@ -24,6 +25,7 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
   let viewModel = EventsTableViewCellViewModel()
   let disposeBag = DisposeBag()
   
+  //MARK: Layout
   let activityIndicator: UIActivityIndicatorView = {
     let activity = UIActivityIndicatorView(style: .medium)
     activity.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +36,6 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
     let image = UIImageView()
     image.contentMode = .scaleAspectFill
     image.translatesAutoresizingMaskIntoConstraints = false
-    image.clipsToBounds = true
-//    image.layer.masksToBounds = false
     return image
   }()
   
@@ -46,15 +46,8 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
   }()
-  
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
-  
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-  }
-  
+
+  //MARK: Methods
   func addHierarchy() {
     contentView.addSubview(eventImage)
     contentView.addSubview(eventTitle)
@@ -94,14 +87,6 @@ class EventTableViewCell: UITableViewCell, ViewCodable {
         self?.activityIndicator.stopAnimating()
         self?.activityIndicator.removeFromSuperview()
       }).disposed(by: disposeBag)
-    
-//    eventImage.rx.observe(CGRect.self, #keyPath(UIView.bounds))
-//      .observe(on: MainScheduler.instance)
-//      .distinctUntilChanged()
-//      .subscribe(onNext: {[weak self] bounds in
-//        self?.eventImage.layer.cornerRadius = (bounds?.width ?? 0 / 2)
-//      })
-//      .disposed(by: disposeBag)
   }
   
   func setup(event: Event) {
