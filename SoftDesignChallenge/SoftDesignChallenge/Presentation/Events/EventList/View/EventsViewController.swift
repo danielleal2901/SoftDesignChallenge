@@ -11,7 +11,9 @@ fileprivate enum Constants {
   static let navigationTitle = "Events Finder"
 }
 
-class EventsViewController: BaseViewController, ViewCodable {
+class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
+  typealias ImageDescriptorType = EventListImage
+  
   //MARK: Properties
   let viewModel: EventsViewModel
 

@@ -65,12 +65,12 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     setupNavigationBar()
   }
   
-  @objc override func backAction(_ sender: Any){
+  @objc override func leftButtonAction(_ sender: Any) {
     (coordinator as? EventsCoordinator)?.didFinishDetail()
   }
-  
+
   private func setupNavigationBar() {
-    setLeftBarItem(image: image(.backArrow))
+    setBarItem(image: image(.backArrow), size: CGSize(width: 24, height: 20), side: .left)
   }
   
 }

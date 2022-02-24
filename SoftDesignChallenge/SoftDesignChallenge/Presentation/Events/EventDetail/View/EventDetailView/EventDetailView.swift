@@ -16,6 +16,7 @@ class EventDetailView: UIView, ViewCodable {
   var mapNormalTopConstraint: NSLayoutConstraint?
   var mapNormalHeightConstraint: NSLayoutConstraint?
   var mapFullscreenTopConstraint: NSLayoutConstraint?
+  var mapFullscreenBottomConstraint: NSLayoutConstraint?
 
   //MARK: Layout
   let scrollView : UIScrollView = {
@@ -85,6 +86,14 @@ class EventDetailView: UIView, ViewCodable {
     map.translatesAutoresizingMaskIntoConstraints = false
     return map
   }()
+  
+  lazy var checkInView: CheckInView = {
+    let view = CheckInView(viewModel: viewModel)
+    view.layer.cornerRadius = 10
+    view.clipsToBounds = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
     
   //MARK: Initializers
   init(viewModel: EventDetailViewModel) {
@@ -104,8 +113,9 @@ class EventDetailView: UIView, ViewCodable {
     scrollView.addSubview(contentView)
     contentView.addSubview(eventImage)
     contentView.addSubview(verticalStack)
+    contentView.addSubview(checkInView)
     contentView.addSubview(mapView)
-    
+
     verticalStack.addArrangedSubview(titleLabel)
     verticalStack.addArrangedSubview(descriptionLabel)
     verticalStack.addArrangedSubview(dateLabel)
@@ -118,6 +128,7 @@ class EventDetailView: UIView, ViewCodable {
     constraints.append(contentsOf: eventImageConstraints())
     constraints.append(contentsOf: verticalStackConstraints())
     constraints.append(contentsOf: mapConstraints())
+    constraints.append(contentsOf: checkInConstraints())
     
     NSLayoutConstraint.activate(constraints)
   }

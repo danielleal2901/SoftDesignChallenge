@@ -8,7 +8,7 @@
 import Foundation
 
 struct CheckIn: Encodable {
-  let eventId: Int
+  let eventId: String
   let name: String
   let email: String
 }

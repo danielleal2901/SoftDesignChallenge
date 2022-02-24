@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class BaseViewController: UIViewController {
+  enum BarButtonSide {
+    case left
+    case right
+  }
+  
   weak var coordinator: Coordinator?
   
   override func viewWillAppear(_ animated: Bool) {
@@ -17,19 +22,28 @@ class BaseViewController: UIViewController {
     print(String(describing: self))
   }
   
-  func setLeftBarItem(image: UIImage) {
+  func setBarItem(image: UIImage, size: CGSize, side: BarButtonSide) {
     let menuBtn = UIButton(type: .custom)
     menuBtn.setImage(image, for: .normal)
-    menuBtn.addTarget(self, action: #selector(backAction(_:)), for: UIControl.Event.touchUpInside)
     
     let menuBarItem = UIBarButtonItem(customView: menuBtn)
-    let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 24)
+    let currWidth = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: size.width)
     currWidth?.isActive = true
-    let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 18)
+    let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: size.height)
     currHeight?.isActive = true
-    self.navigationItem.leftBarButtonItem = menuBarItem
+    
+    if (side == .left) {
+      self.navigationItem.leftBarButtonItem = menuBarItem
+      menuBtn.addTarget(self, action: #selector(leftButtonAction(_:)), for: UIControl.Event.touchUpInside)
+    }
+    else {
+      self.navigationItem.rightBarButtonItem = menuBarItem
+      menuBtn.addTarget(self, action: #selector(rightButtonAction(_:)), for: UIControl.Event.touchUpInside)
+    }
   }
   
-  @objc func backAction(_ sender: Any){}
-
+  
+  @objc func leftButtonAction(_ sender: Any){}
+  @objc func rightButtonAction(_ sender: Any){}
+  
 }
