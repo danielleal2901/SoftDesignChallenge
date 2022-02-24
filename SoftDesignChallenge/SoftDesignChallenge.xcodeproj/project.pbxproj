@@ -208,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				0C184F8C27C588EB000E4EF7 /* EventsView.swift */,
+				0C184F9B27C5B704000E4EF7 /* EventsViewOutputDelegate.swift */,
 				0C184F8F27C5A2B8000E4EF7 /* EventTableViewCell.swift */,
 				0CB4E86B27C6877500949D82 /* LoadingView.swift */,
 				0CB4E86D27C687C900949D82 /* SearchErrorView.swift */,
@@ -340,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				0CB0724527C55FB00084B2E9 /* EventsViewController.swift */,
-				0C184F9B27C5B704000E4EF7 /* EventsViewOutputDelegate.swift */,
 				0C184F9D27C5B765000E4EF7 /* EventsViewController+OutputDelegate.swift */,
 				0C184F8E27C58C08000E4EF7 /* Components */,
 			);
@@ -399,9 +399,9 @@
 			isa = PBXGroup;
 			children = (
 				0C184FA427C5B991000E4EF7 /* EventDetailView.swift */,
+				0CB4E87327C6BBC800949D82 /* EventDetailViewOutputDelegate.swift */,
 				0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */,
 				0CB4E87C27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift */,
-				0CB4E87327C6BBC800949D82 /* EventDetailViewOutputDelegate.swift */,
 				0CB4E87827C6C0BB00949D82 /* EventMapView.swift */,
 				0CB4E87A27C6C26E00949D82 /* EventMapViewOutputDelegate.swift */,
 			);

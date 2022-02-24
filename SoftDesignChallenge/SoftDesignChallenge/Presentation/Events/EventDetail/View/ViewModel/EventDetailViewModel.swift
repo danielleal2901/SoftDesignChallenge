@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+fileprivate enum Constants {
+  static let date = "Data: "
+}
+
 class EventDetailViewModel {
   let event: Event
   
@@ -28,7 +32,7 @@ class EventDetailViewModel {
     .bold(
       boldFont: UIFont(name: "AvenirNextCondensed-DemiBold", size: 13) ??
       UIFont.boldSystemFont(ofSize: 13),
-      value: "Data: "
+      value: Constants.date
     )
     .normal(
       normalFont: UIFont(name: "AvenirNextCondensed-Medium", size: 12) ??
@@ -43,3 +47,5 @@ class EventDetailViewModel {
     event.loadedImage
   }
 }
+
+

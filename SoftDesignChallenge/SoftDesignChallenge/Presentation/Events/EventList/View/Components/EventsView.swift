@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 import RxSwift
 
+fileprivate enum Constants {
+  static let searchBarPlaceholder = "Search for event"
+}
+
 class EventsView: UIView, ViewCodable {
   //MARK: Properties
   let viewModel: EventsViewModel
@@ -18,7 +22,7 @@ class EventsView: UIView, ViewCodable {
   //MARK: Layout
   let searchBar: UISearchBar = {
     let searchBar = UISearchBar()
-    searchBar.placeholder = "Search for event"
+    searchBar.placeholder = Constants.searchBarPlaceholder
     searchBar.tintColor = .red
     searchBar.barStyle = .default
     searchBar.backgroundImage = UIImage()

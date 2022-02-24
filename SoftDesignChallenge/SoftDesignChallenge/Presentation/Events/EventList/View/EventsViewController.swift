@@ -7,6 +7,10 @@
 
 import UIKit
 
+fileprivate enum Constants {
+  static let navigationTitle = "Events Finder"
+}
+
 class EventsViewController: BaseViewController, ViewCodable {
   //MARK: Properties
   let viewModel: EventsViewModel
@@ -52,7 +56,7 @@ class EventsViewController: BaseViewController, ViewCodable {
 
   func applyAdditionalConfiguration() {
     view.backgroundColor = .white
-    navigationItem.title = "Events Finder"
+    navigationItem.title = Constants.navigationTitle
     navigationController?.navigationBar.prefersLargeTitles = true
   }
   

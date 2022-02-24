@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 
+fileprivate enum Constants {
+  static let loading = "Loading..."
+}
+
 class LoadingView: UIView, ViewCodable {
   //MARK: Layout
   let label: UILabel = {
     let label = UILabel()
-    label.text = "Loading..."
+    label.text = Constants.loading
     label.textAlignment = .center
     label.font = UIFont(name: "AvenirNextCondensed-Medium", size: 20)
     label.numberOfLines = 0
