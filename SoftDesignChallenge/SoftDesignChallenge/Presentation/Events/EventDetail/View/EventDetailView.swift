@@ -14,6 +14,7 @@ class EventDetailView: UIView, ViewCodable {
   let event: Event
   weak var outputDelegate: EventDetailViewOutputDelegate?
   var mapNormalTopConstraint: NSLayoutConstraint?
+  var mapNormalHeightConstraint: NSLayoutConstraint?
   var mapFullscreenTopConstraint: NSLayoutConstraint?
 
   //MARK: Layout
@@ -61,8 +62,18 @@ class EventDetailView: UIView, ViewCodable {
   
   lazy var dateLabel: UILabel = {
     let label = UILabel()
-    label.text = "Data: 29/01/2000"
-    label.font = UIFont(name: "AvenirNextCondensed-Medium", size: 12)
+    let attributedString = NSMutableAttributedString()
+            .bold(
+              boldFont: UIFont(name: "AvenirNextCondensed-DemiBold", size: 13) ??
+              UIFont.boldSystemFont(ofSize: 13),
+              value: "Data: "
+            )
+            .normal(
+              normalFont: UIFont(name: "AvenirNextCondensed-Medium", size: 12) ??
+              UIFont.systemFont(ofSize: 12),
+              value: event.getFormattedDate()
+            )
+    label.attributedText = attributedString
     label.textAlignment = .left
     label.translatesAutoresizingMaskIntoConstraints = false
     return label

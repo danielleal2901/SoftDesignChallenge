@@ -34,6 +34,10 @@ class EventDetailViewController: BaseViewController, ViewCodable {
   //MARK: Methods
   override func viewDidLoad() {
     super.viewDidLoad()
+  }
+  
+  override func loadView() {
+    super.loadView()
     
     setupView()
   }
@@ -46,9 +50,13 @@ class EventDetailViewController: BaseViewController, ViewCodable {
     NSLayoutConstraint.activate([
       detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
       detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      detailView.topAnchor.constraint(equalTo: view.topAnchor),
-      detailView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+      detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
+  }
+  
+  func applyAdditionalConfiguration() {
+    view.backgroundColor = .white
   }
   
 }

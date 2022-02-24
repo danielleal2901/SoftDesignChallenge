@@ -81,7 +81,7 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
       mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
       
       closeMap.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-      closeMap.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+      closeMap.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       closeMap.heightAnchor.constraint(equalToConstant: 40),
       closeMap.widthAnchor.constraint(equalToConstant: 40)
     ])
@@ -89,15 +89,13 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
   }
   
   @objc func touchedMap(_ sender: Any){
-    if (!isMapExpanded) {
-      showMapFullscreen()
-    }
+    isMapExpanded = true
+    outputDelegate?.showMapInFullscreen()
   }
   
   @objc func closeMapFullscreen(_ sender: Any) {
-    if (isMapExpanded){
-      removeMapFullscreen()
-    }
+    isMapExpanded = false
+    outputDelegate?.removeMapFullscreen()
   }
   
   private func updateLocationOnMap(to location: CLLocation, with title: String?) {
@@ -108,16 +106,6 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
 
       let viewRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
       self.mapView.setRegion(viewRegion, animated: true)
-  }
-  
-  private func showMapFullscreen() {
-    isMapExpanded = true
-    outputDelegate?.showMapInFullscreen()
-  }
-  
-  private func removeMapFullscreen() {
-    isMapExpanded = false
-    outputDelegate?.removeMapFullscreen()
   }
 
 }

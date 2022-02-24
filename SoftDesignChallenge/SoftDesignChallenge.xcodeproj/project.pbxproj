@@ -54,6 +54,7 @@
 		0CB4E87B27C6C26E00949D82 /* EventMapViewOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E87A27C6C26E00949D82 /* EventMapViewOutputDelegate.swift */; };
 		0CB4E87D27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E87C27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift */; };
 		0CB4E87F27C6DB7400949D82 /* ImageView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E87E27C6DB7400949D82 /* ImageView+Rounded.swift */; };
+		0CB4E88127C6DF4200949D82 /* NSMutableAttributedString+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB4E88027C6DF4200949D82 /* NSMutableAttributedString+Styles.swift */; };
 		68183582DF50EE17B35C93AC /* Pods_SoftDesignChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +128,7 @@
 		0CB4E87A27C6C26E00949D82 /* EventMapViewOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapViewOutputDelegate.swift; sourceTree = "<group>"; };
 		0CB4E87C27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+MapOutputDelegate.swift"; sourceTree = "<group>"; };
 		0CB4E87E27C6DB7400949D82 /* ImageView+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Rounded.swift"; sourceTree = "<group>"; };
+		0CB4E88027C6DF4200949D82 /* NSMutableAttributedString+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Styles.swift"; sourceTree = "<group>"; };
 		4EDBAB16EE13F702A03FA08A /* Pods_SoftDesignChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoftDesignChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607821379980C00B2897B7FB /* Pods-SoftDesignChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.release.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		F114B5F3454F0FDE84680C4F /* Pods-SoftDesignChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoftDesignChallenge.debug.xcconfig"; path = "Target Support Files/Pods-SoftDesignChallenge/Pods-SoftDesignChallenge.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				0C184F7027C575D2000E4EF7 /* Encodable+dictionary.swift */,
 				0CB4E87E27C6DB7400949D82 /* ImageView+Rounded.swift */,
+				0CB4E88027C6DF4200949D82 /* NSMutableAttributedString+Styles.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -604,6 +607,7 @@
 				0CB4E87627C6BC0700949D82 /* EventDetailViewController+DetailViewOutputDelegate.swift in Sources */,
 				0CB0724627C55FB10084B2E9 /* EventsViewController.swift in Sources */,
 				0CB4E87B27C6C26E00949D82 /* EventMapViewOutputDelegate.swift in Sources */,
+				0CB4E88127C6DF4200949D82 /* NSMutableAttributedString+Styles.swift in Sources */,
 				0CB4E86C27C6877500949D82 /* LoadingView.swift in Sources */,
 				0CB0728427C56A890084B2E9 /* Request.swift in Sources */,
 				0C184F7E27C580FF000E4EF7 /* EventsViewModel.swift in Sources */,

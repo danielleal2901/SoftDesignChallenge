@@ -32,6 +32,7 @@ extension EventsCoordinator {
   func showEventDetail(event: Event) {
     let controller = EventDetailViewController(event: event)
     controller.coordinator = self
+    navigationController.navigationBar.prefersLargeTitles = false
     navigationController.pushViewController(controller, animated: true)
   }
 }
