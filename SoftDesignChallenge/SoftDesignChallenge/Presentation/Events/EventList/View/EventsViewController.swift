@@ -37,6 +37,10 @@ class EventsViewController: BaseViewController, ViewCodable {
   //MARK: Methods
   override func viewDidLoad() {
     super.viewDidLoad()
+  }
+  
+  override func loadView() {
+    super.loadView()
     
     setupView()
   }
@@ -57,7 +61,6 @@ class EventsViewController: BaseViewController, ViewCodable {
   func applyAdditionalConfiguration() {
     view.backgroundColor = .white
     navigationItem.title = Constants.navigationTitle
-    navigationController?.navigationBar.prefersLargeTitles = true
   }
   
 }

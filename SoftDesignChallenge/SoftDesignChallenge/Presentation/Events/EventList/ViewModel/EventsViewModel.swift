@@ -37,14 +37,16 @@ class EventsViewModel {
   
   var allEvents: [Event] = []
   let disposeBag = DisposeBag()
+  let network: Network
   
   //MARK: Initializers
-  init() {
+  init(network: Network = NetworkManager.shared) {
+    self.network = network
   }
   
   //MARK: Methods
   func getEvents() {
-    let observable: Observable<[Event]> = NetworkManager.shared.request(service: EventRequest.getEvents)
+    let observable: Observable<[Event]> = network.request(service: EventRequest.getEvents)
     
     observable.subscribe(onNext: {[weak self] events in
       self?.allEvents = events
@@ -56,7 +58,7 @@ class EventsViewModel {
     
   }
   
-  func setupSearchObservables() {
+  private func setupSearchObservables() {
     searchSubject
       .asObservable()
       .distinctUntilChanged()

@@ -16,7 +16,7 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   let viewModel: EventDetailViewModel
   
   //MARK: Layout
-  private lazy var detailView: EventDetailView = {
+  lazy var detailView: EventDetailView = {
     let view = EventDetailView(viewModel: viewModel)
     view.translatesAutoresizingMaskIntoConstraints = false
     view.outputDelegate = self
@@ -70,7 +70,6 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   }
   
   private func setupNavigationBar() {
-    navigationController?.navigationBar.prefersLargeTitles = false
     setLeftBarItem(image: image(.backArrow))
   }
   

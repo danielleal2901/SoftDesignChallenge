@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class NetworkManager {
+final class NetworkManager: Network {
   //MARK: Properties
   private let session: URLSession
   public static let shared = NetworkManager()
@@ -22,9 +22,9 @@ final class NetworkManager {
   //MARK: Methods
   public func request<T: Decodable> (
     _ url: URL,
-    method: HTTPMethod = .get,
-    parameters: [String: Any]? = nil,
-    headers: [String: String]? = nil) -> Observable<T> {
+    method: HTTPMethod,
+    parameters: [String: Any]?,
+    headers: [String: String]?) -> Observable<T> {
       
       return .create { observer in
         do {
