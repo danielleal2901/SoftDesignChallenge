@@ -17,16 +17,16 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   
   //MARK: Layout
   private lazy var detailView: EventDetailView = {
-    let view = EventDetailView(event: event, viewModel: viewModel)
+    let view = EventDetailView(viewModel: viewModel)
     view.translatesAutoresizingMaskIntoConstraints = false
     view.outputDelegate = self
     return view
   }()
   
   //MARK: Initializers
-  init(event: Event, viewModel: EventDetailViewModel = EventDetailViewModel()){
+  init(event: Event, viewModel: EventDetailViewModel? = nil){
     self.event = event
-    self.viewModel = viewModel
+    self.viewModel = viewModel ?? EventDetailViewModel(event: event)
     
     super.init(nibName: nil, bundle: nil)
   }
