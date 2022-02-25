@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 fileprivate enum Constants {
-  static let searchBarPlaceholder = "Search for event"
+  static let searchBarPlaceholder = "Procure por um evento"
 }
 
 class EventsView: UIView, ViewCodable {

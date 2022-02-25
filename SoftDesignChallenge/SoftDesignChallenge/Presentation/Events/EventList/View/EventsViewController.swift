@@ -8,7 +8,7 @@
 import UIKit
 
 fileprivate enum Constants {
-  static let navigationTitle = "Events Finder"
+  static let navigationTitle = "Eventos"
 }
 
 class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
