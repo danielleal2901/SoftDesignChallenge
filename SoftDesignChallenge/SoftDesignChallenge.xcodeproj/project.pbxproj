@@ -222,6 +222,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		0C08B89427C873B20028B6F6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0CB4E86F27C6A53100949D82 /* Assets.xcassets */,
+				0CB4E87127C6A54900949D82 /* EventDetailImage.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0C184F6E27C575AC000E4EF7 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,9 +537,8 @@
 		0CB0727B27C560710084B2E9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0C08B89427C873B20028B6F6 /* Resources */,
 				0C7A19F527C7F8F1007797AA /* Model */,
-				0CB4E86F27C6A53100949D82 /* Assets.xcassets */,
-				0CB4E87127C6A54900949D82 /* EventDetailImage.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";

@@ -2,7 +2,7 @@
 //  EventDetailViewTests.swift
 //  SoftDesignChallengeTests
 //
-//  Created by ACT on 24/02/22.
+//  Created by Daniel Leal on 24/02/22.
 //
 
 import Foundation
