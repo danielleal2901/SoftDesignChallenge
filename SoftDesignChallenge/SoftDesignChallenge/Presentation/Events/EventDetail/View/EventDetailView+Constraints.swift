@@ -77,7 +77,7 @@ extension EventDetailView {
   func checkInConstraints() -> [NSLayoutConstraint] {
     let constraints = [
       checkInView.topAnchor.constraint(greaterThanOrEqualTo: mapView.bottomAnchor, constant: 30),
-      checkInView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+      checkInView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
       checkInView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
       checkInView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6)
     ]
