@@ -69,7 +69,7 @@ extension EventDetailView {
     mapNormalHeightConstraint?.isActive = true
     
     mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: topAnchor)
-    mapFullscreenBottomConstraint = mapView.topAnchor.constraint(equalTo: bottomAnchor)
+    mapFullscreenBottomConstraint = mapView.bottomAnchor.constraint(equalTo: bottomAnchor)
 
     return constraints
   }

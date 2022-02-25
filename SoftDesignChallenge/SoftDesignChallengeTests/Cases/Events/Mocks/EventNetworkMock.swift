@@ -34,7 +34,8 @@ class EventNetworkMock: Network {
           let mockData = try JSONHelper.loadFromFile(name: "event-mock")!
           observer.onNext(try! JSONDecoder().decode(T.self, from: mockData))
         case .checkIn:
-          break
+          let checkResponse = CheckInResponse(code: "200")
+          observer.onNext(checkResponse as! T)
         }
       } catch {
         return Disposables.create()

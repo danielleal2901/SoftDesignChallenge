@@ -8,7 +8,6 @@
 import Foundation
 import XCTest
 import RxBlocking
-
 @testable import SoftDesignChallenge
 
 class EventsViewTests: XCTestCase {
@@ -27,6 +26,7 @@ class EventsViewTests: XCTestCase {
     XCTAssertTrue(sut.subviews.contains(sut.searchBar))
     XCTAssertTrue(sut.subviews.contains(sut.tableView))
     XCTAssertTrue(sut.subviews.contains(sut.loadingView))
+    XCTAssertTrue(sut.subviews.contains(sut.errorView))
     XCTAssertTrue(sut.subviews.contains(sut.errorView))
   }
   
@@ -66,13 +66,12 @@ class EventsViewTests: XCTestCase {
     XCTAssertTrue(sut.tableView.isHidden)
   }
   
-  func test_EventsViewController_outputDelegate() throws {
-    let mockDelegate = EventsViewOutputMock()
+  func test_EventsView_outputDelegate() throws {
+    let mockDelegate = EventsViewOutputDelegateMock()
     let mockData = try JSONHelper.loadFromFile(name: "event-mock")
-    
-    XCTAssertFalse(mockDelegate.goEventFlow)
-    sut.outputDelegate = mockDelegate
     let event = try JSONDecoder().decode(Event.self, from: mockData!)
+    sut.outputDelegate = mockDelegate
+
     sut.outputDelegate?.goEventDetailFlow(event: event)
     
     XCTAssertTrue(mockDelegate.goEventFlow)

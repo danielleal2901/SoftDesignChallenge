@@ -6,10 +6,9 @@
 //
 
 import Foundation
-
 @testable import SoftDesignChallenge
 
-class EventsViewOutputMock: EventsViewOutputDelegate {
+class EventsViewOutputDelegateMock: EventsViewOutputDelegate {
   var goEventFlow = false
   
   func goEventDetailFlow(event: Event) {

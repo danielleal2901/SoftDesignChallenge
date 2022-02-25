@@ -14,8 +14,6 @@ class BaseViewController: UIViewController {
     case right
   }
   
-  weak var coordinator: Coordinator?
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -43,7 +41,7 @@ class BaseViewController: UIViewController {
   }
   
   
-  @objc func leftButtonAction(_ sender: Any){}
-  @objc func rightButtonAction(_ sender: Any){}
+  @objc func leftButtonAction(_ sender: Any?){}
+  @objc func rightButtonAction(_ sender: Any?){}
   
 }

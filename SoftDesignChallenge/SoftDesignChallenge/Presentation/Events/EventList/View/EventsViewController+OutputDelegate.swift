@@ -9,6 +9,6 @@ import Foundation
 
 extension EventsViewController: EventsViewOutputDelegate {
   func goEventDetailFlow(event: Event) {
-    (coordinator as? EventsCoordinator)?.showEventDetail(event: event)
+    coordinator?.showEventDetail(event: event)
   }
 }

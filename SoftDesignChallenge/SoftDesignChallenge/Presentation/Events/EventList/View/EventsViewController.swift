@@ -15,6 +15,7 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
   typealias ImageDescriptorType = EventListImage
   
   //MARK: Properties
+  weak var coordinator: EventsViewCoordinatorDelegate?
   let viewModel: EventsViewModel
 
   //MARK: Layout

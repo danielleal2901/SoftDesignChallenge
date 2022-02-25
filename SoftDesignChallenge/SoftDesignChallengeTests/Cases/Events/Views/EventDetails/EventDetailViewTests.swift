@@ -28,13 +28,14 @@ class EventDetailViewTests: XCTestCase {
   
   func test_EventDetailView_layoutElementsCreated() {
     XCTAssertTrue(sut.subviews.contains(sut.scrollView))
-    XCTAssertTrue(sut.subviews.contains(sut.contentView))
-    XCTAssertTrue(sut.subviews.contains(sut.verticalStack))
-    XCTAssertTrue(sut.subviews.contains(sut.titleLabel))
-    XCTAssertTrue(sut.subviews.contains(sut.descriptionLabel))
-    XCTAssertTrue(sut.subviews.contains(sut.dateLabel))
-    XCTAssertTrue(sut.subviews.contains(sut.eventImage))
-    XCTAssertTrue(sut.subviews.contains(sut.mapView))
+    XCTAssertTrue(sut.scrollView.subviews.contains(sut.contentView))
+    XCTAssertTrue(sut.contentView.subviews.contains(sut.verticalStack))
+    XCTAssertTrue(sut.verticalStack.subviews.contains(sut.titleLabel))
+    XCTAssertTrue(sut.verticalStack.subviews.contains(sut.descriptionLabel))
+    XCTAssertTrue(sut.verticalStack.subviews.contains(sut.dateLabel))
+    XCTAssertTrue(sut.contentView.subviews.contains(sut.eventImage))
+    XCTAssertTrue(sut.contentView.subviews.contains(sut.mapView))
+    XCTAssertTrue(sut.contentView.subviews.contains(sut.checkInView))
   }
   
   func test_EventDetailView_layoutConfiguration(){
@@ -53,5 +54,33 @@ class EventDetailViewTests: XCTestCase {
     let date = sut.viewModel.event.getFormattedDate()
     
     XCTAssertEqual(sut.viewModel.date.string, "Data: \(date)")
+  }
+  
+  func test_EventDetailView_mapViewFullscreen() {
+    let delegate = EventDetailViewOutputDelegateMock()
+    sut.outputDelegate = delegate
+    
+    sut.showMapInFullscreen()
+    
+    XCTAssertTrue(delegate.navigationIsHidden)
+    XCTAssertEqual(sut.mapNormalHeightConstraint?.isActive, false)
+    XCTAssertEqual(sut.mapNormalTopConstraint?.isActive, false)
+    XCTAssertEqual(sut.mapFullscreenTopConstraint?.isActive, true)
+    XCTAssertEqual(sut.mapFullscreenBottomConstraint?.isActive, true)
+    
+  }
+  
+  func test_EventDetailView_removeMapViewFullscreen() {
+    let delegate = EventDetailViewOutputDelegateMock()
+    delegate.navigationIsHidden = true
+    sut.outputDelegate = delegate
+
+    sut.removeMapFullscreen()
+    
+    XCTAssertFalse(delegate.navigationIsHidden)
+    XCTAssertEqual(sut.mapNormalHeightConstraint?.isActive, true)
+    XCTAssertEqual(sut.mapNormalTopConstraint?.isActive, true)
+    XCTAssertEqual(sut.mapFullscreenTopConstraint?.isActive, false)
+    XCTAssertEqual(sut.mapFullscreenBottomConstraint?.isActive, false)
   }
 }

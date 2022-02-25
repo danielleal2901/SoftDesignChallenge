@@ -1,5 +1,5 @@
 //
-//  EventDetailViewController+DetailViewOutputDelegate.swift
+//  EventDetailViewController+OutputDelegate.swift
 //  SoftDesignChallenge
 //
 //  Created by Daniel Leal on 23/02/22.

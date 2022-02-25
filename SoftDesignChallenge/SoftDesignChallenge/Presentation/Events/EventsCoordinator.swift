@@ -21,28 +21,30 @@ class EventsCoordinator: Coordinator {
   
   //MARK: Methods
   func start() {
-    navigationController.pushViewController(showEventsView(), animated: true)
+    navigationController.pushViewController(createEventsView(), animated: true)
   }
   
   func finish() {
     delegate?.didFinishEventsFlow()
   }
   
-}
-
-extension EventsCoordinator {
-  func showEventsView() -> EventsViewController {
+  private func createEventsView() -> EventsViewController {
     let controller = EventsViewController()
     controller.coordinator = self
     return controller
   }
   
+}
+
+extension EventsCoordinator: EventsViewCoordinatorDelegate {
   func showEventDetail(event: Event) {
     let controller = EventDetailViewController(event: event)
     controller.coordinator = self
     navigationController.pushViewController(controller, animated: true)
   }
-    
+}
+
+extension EventsCoordinator: EventDetailViewCoordinatorDelegate {
   func didFinishDetail() {
     navigationController.popViewController(animated: true)
   }

@@ -14,6 +14,7 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   //MARK: Properties
   let event: Event
   let viewModel: EventDetailViewModel
+  weak var coordinator: EventDetailViewCoordinatorDelegate?
   
   //MARK: Layout
   lazy var detailView: EventDetailView = {
@@ -65,8 +66,8 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     setupNavigationBar()
   }
   
-  @objc override func leftButtonAction(_ sender: Any) {
-    (coordinator as? EventsCoordinator)?.didFinishDetail()
+  @objc override func leftButtonAction(_ sender: Any?) {
+    coordinator?.didFinishDetail()
   }
 
   private func setupNavigationBar() {

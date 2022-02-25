@@ -30,4 +30,26 @@ class EventsViewControllerTests: XCTestCase {
     XCTAssertTrue(sut.view.backgroundColor == .white)
     XCTAssertTrue(sut.navigationItem.title == "Events Finder")
   }
+  
+  func test_EventsViewController_coordinatorDelegate() throws {
+    let mockData = try JSONHelper.loadFromFile(name: "event-mock")
+    let event = try JSONDecoder().decode(Event.self, from: mockData!)
+    let coordinator = EventsCoordinatorMock()
+    sut.coordinator = coordinator
+  
+    XCTAssertNoThrow(sut.goEventDetailFlow(event: event))
+    
+    XCTAssertTrue(coordinator.calledShowEventDetail)
+  }
+  
+  func test_EventsViewController_outputDelegate() throws {
+    let mockData = try JSONHelper.loadFromFile(name: "event-mock")
+    let event = try JSONDecoder().decode(Event.self, from: mockData!)
+    let coordinator = EventsCoordinatorMock()
+    sut.coordinator = coordinator
+    
+    XCTAssertNoThrow(sut.goEventDetailFlow(event: event))
+    
+    XCTAssertTrue(coordinator.calledShowEventDetail)
+  }
 }
