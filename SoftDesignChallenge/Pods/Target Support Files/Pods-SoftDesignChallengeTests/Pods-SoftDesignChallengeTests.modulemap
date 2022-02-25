@@ -1,0 +1,6 @@
+framework module Pods_SoftDesignChallengeTests {
+  umbrella header "Pods-SoftDesignChallengeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
