@@ -13,7 +13,6 @@ extension EventDetailView: EventMapViewOutputDelegate {
     mapNormalHeightConstraint?.isActive = false
     mapNormalTopConstraint?.isActive = false
     mapFullscreenTopConstraint?.isActive = true
-    mapFullscreenBottomConstraint?.isActive = true
     
     outputDelegate?.hideNavigationBar()
     UIView.animate(withDuration: 0.3) {
@@ -23,7 +22,6 @@ extension EventDetailView: EventMapViewOutputDelegate {
   
   func removeMapFullscreen() {
     mapFullscreenTopConstraint?.isActive = false
-    mapFullscreenBottomConstraint?.isActive = false
     mapNormalTopConstraint?.isActive = true
     mapNormalHeightConstraint?.isActive = true
 

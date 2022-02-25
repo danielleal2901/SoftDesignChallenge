@@ -60,27 +60,16 @@ extension EventDetailView {
     let constraints = [
       mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
       mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+      mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
     ]
     
-    mapNormalTopConstraint = mapView.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 30)
+    mapNormalTopConstraint = mapView.topAnchor.constraint(greaterThanOrEqualTo: verticalStack.bottomAnchor, constant: 30)
     mapNormalTopConstraint?.isActive = true
 
     mapNormalHeightConstraint = mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
     mapNormalHeightConstraint?.isActive = true
     
     mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: topAnchor)
-    mapFullscreenBottomConstraint = mapView.bottomAnchor.constraint(equalTo: bottomAnchor)
-
-    return constraints
-  }
-
-  func checkInConstraints() -> [NSLayoutConstraint] {
-    let constraints = [
-      checkInView.topAnchor.constraint(greaterThanOrEqualTo: mapView.bottomAnchor, constant: 30),
-      checkInView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-      checkInView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      checkInView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6)
-    ]
 
     return constraints
   }

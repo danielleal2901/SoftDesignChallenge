@@ -16,10 +16,29 @@ fileprivate enum Constants {
   static let emailPlaceholder = "Insira seu email"
 }
 
-class CheckInView: UIView, ViewCodable {
+class CheckInView: UIView, ViewCodable, ImageRetriever {
+  typealias ImageDescriptorType = EventDetailImage
+  
   //MARK: Properties
   let viewModel: EventDetailViewModel
   let disposeBag = DisposeBag()
+  
+  //MARK: Layout
+  let backgroundView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .black.withAlphaComponent(0.4)
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
+  let containerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .white
+    view.layer.cornerRadius = 15.0
+    view.clipsToBounds = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
 
   let verticalStack: UIStackView = {
     let stack = UIStackView()
@@ -35,9 +54,11 @@ class CheckInView: UIView, ViewCodable {
     textfield.placeholder = Constants.namePlaceholder
     textfield.font = UIFont(name: "AvenirNextCondensed-Regular", size: 14)
     textfield.textColor = .black
-    textfield.backgroundColor = .white
+    textfield.backgroundColor = .black.withAlphaComponent(0.1)
     textfield.layer.cornerRadius = 10
     textfield.clipsToBounds = true
+    textfield.leftView = UIView(frame: .init(origin: .zero, size: CGSize(width: 5, height: 0)))
+    textfield.leftViewMode = .always
     textfield.translatesAutoresizingMaskIntoConstraints = false
     return textfield
   }()
@@ -47,9 +68,11 @@ class CheckInView: UIView, ViewCodable {
     textfield.placeholder = Constants.emailPlaceholder
     textfield.font = UIFont(name: "AvenirNextCondensed-Regular", size: 14)
     textfield.textColor = .black
-    textfield.backgroundColor = .white
+    textfield.backgroundColor = .black.withAlphaComponent(0.1)
     textfield.layer.cornerRadius = 10
     textfield.clipsToBounds = true
+    textfield.leftView = UIView(frame: .init(origin: .zero, size: CGSize(width: 5, height: 0)))
+    textfield.leftViewMode = .always
     textfield.translatesAutoresizingMaskIntoConstraints = false
     return textfield
   }()
@@ -61,6 +84,14 @@ class CheckInView: UIView, ViewCodable {
     button.setTitleColor(.black, for: .normal)
     button.titleLabel?.font = UIFont(name: "AvenirNextCondensed-DemiBold", size: 14)
     button.addTarget(self, action: #selector(tappedCheckIn(_:)), for: .touchUpInside)
+    return button
+  }()
+  
+  lazy var closeButton: UIButton = {
+    let button = UIButton()
+    button.setImage(image(.close), for: .normal)
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.addTarget(self, action: #selector(tappedClose(_:)), for: .touchUpInside)
     return button
   }()
   
@@ -87,8 +118,12 @@ class CheckInView: UIView, ViewCodable {
   
   //MARK: Methods
   func addHierarchy() {
-    addSubview(verticalStack)
-    addSubview(checkInButton)
+    addSubview(backgroundView)
+    
+    backgroundView.addSubview(containerView)
+    containerView.addSubview(closeButton)
+    containerView.addSubview(verticalStack)
+    containerView.addSubview(checkInButton)
     
     verticalStack.addArrangedSubview(nameTextfield)
     verticalStack.addArrangedSubview(emailTextfield)
@@ -97,13 +132,28 @@ class CheckInView: UIView, ViewCodable {
   
   func addConstraints() {
     NSLayoutConstraint.activate([
-      verticalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-      verticalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-      verticalStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+      backgroundView.topAnchor.constraint(equalTo: topAnchor),
+      backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+      backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
       
-      checkInButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+      containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
+      containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+      containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
+      containerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
+      
+      closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+      closeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
+      closeButton.heightAnchor.constraint(equalToConstant: 30),
+      closeButton.widthAnchor.constraint(equalToConstant: 30),
+      
+      verticalStack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
+      verticalStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+      verticalStack.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 15),
+      
+      checkInButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
       checkInButton.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 5),
-      checkInButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+      checkInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -5),
       
       nameTextfield.heightAnchor.constraint(equalToConstant: 40),
       emailTextfield.heightAnchor.constraint(equalToConstant: 40),
@@ -113,6 +163,10 @@ class CheckInView: UIView, ViewCodable {
   
   func applyAdditionalConfiguration() {
     backgroundColor = .black.withAlphaComponent(0.05)
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    tap.cancelsTouchesInView = false
+    addGestureRecognizer(tap)
   }
   
   func bindUI() {
@@ -121,10 +175,17 @@ class CheckInView: UIView, ViewCodable {
       .disposed(by: disposeBag)
   }
   
+  @objc func dismissKeyboard() {
+    endEditing(true)
+  }
+  
   @objc func tappedCheckIn(_ sender: Any){
     viewModel.sendCheckin(name: nameTextfield.text ?? "", email: emailTextfield.text ?? "")
   }
   
+  @objc func tappedClose(_ sender: Any){
+    isHidden = true
+  }
 }
 
 extension Reactive where Base: CheckInView {

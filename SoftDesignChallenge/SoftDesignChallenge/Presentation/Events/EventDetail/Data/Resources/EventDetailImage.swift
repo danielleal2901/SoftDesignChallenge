@@ -10,4 +10,5 @@ import Foundation
 enum EventDetailImage: String, ImageDescriptor {
   case close
   case backArrow
+  case add
 }

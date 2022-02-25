@@ -40,7 +40,6 @@ class BaseViewController: UIViewController {
     }
   }
   
-  
   @objc func leftButtonAction(_ sender: Any?){}
   @objc func rightButtonAction(_ sender: Any?){}
   
