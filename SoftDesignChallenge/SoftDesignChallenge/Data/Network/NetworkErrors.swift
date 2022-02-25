@@ -16,13 +16,13 @@ enum NetworkErrors: Error {
   var message: String {
     switch self {
     case .invalidUrl:
-      return "Invalid url"
+      return "URL inválida"
     case .decodeError:
-      return "Decode object error"
+      return "Erro na decodificação do objeto"
     case .statusCode(let code):
-      return "Error \(code)"
+      return "Erro: \(code)"
     case .withoutResponseData:
-      return "Without response data"
+      return "Sem dados na resposta"
     }
   }
 }

@@ -17,9 +17,9 @@ enum SearchError: Error {
     case .underlyingError(let error):
       return error.localizedDescription
     case .notFound:
-      return "Event not found"
+      return "Evento não encontrado"
     case .unknown:
-      return "unknown"
+      return "Erro desconhecido"
     }
     
   }
