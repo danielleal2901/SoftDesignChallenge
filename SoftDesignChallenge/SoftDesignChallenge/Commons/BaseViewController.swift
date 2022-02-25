@@ -14,6 +14,14 @@ class BaseViewController: UIViewController {
     case right
   }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    tap.cancelsTouchesInView = false
+    view.addGestureRecognizer(tap)
+  }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -42,5 +50,7 @@ class BaseViewController: UIViewController {
   
   @objc func leftButtonAction(_ sender: Any?){}
   @objc func rightButtonAction(_ sender: Any?){}
-  
+  @objc func dismissKeyboard() {
+    view.endEditing(true)
+  }
 }
