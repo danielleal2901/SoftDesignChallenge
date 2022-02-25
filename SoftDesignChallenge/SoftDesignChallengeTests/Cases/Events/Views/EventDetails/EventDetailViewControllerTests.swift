@@ -25,6 +25,7 @@ class EventDetailViewControllerTests: XCTestCase {
   
   func test_EventsDetailViewController_layoutConfiguration() {
     XCTAssertTrue(sut.view.subviews.contains(sut.detailView))
+    XCTAssertTrue(sut.view.subviews.contains(sut.checkInView))
     XCTAssertTrue(sut.view.backgroundColor == .white)
     XCTAssertNotNil(sut.navigationItem.leftBarButtonItem)
   }
@@ -51,5 +52,20 @@ class EventDetailViewControllerTests: XCTestCase {
 
     XCTAssertNoThrow(sut.showNavigationBar())
     XCTAssertEqual(sut.navigationController?.navigationBar.isHidden, false)
+  }
+  
+  func test_EventsDetailViewController_showCheckIn() {
+    sut.rightButtonAction(nil)
+
+    XCTAssertFalse(sut.checkInView.isHidden)
+  }
+  
+  func test_EventsDetailViewController_removeCheckIn() {
+    sut.rightButtonAction(nil)
+    XCTAssertFalse(sut.checkInView.isHidden)
+    
+    sut.checkInView.tappedClose(nil)
+    
+    XCTAssertTrue(sut.checkInView.isHidden)
   }
 }

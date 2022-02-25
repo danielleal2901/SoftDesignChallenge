@@ -35,7 +35,6 @@ class EventDetailViewTests: XCTestCase {
     XCTAssertTrue(sut.verticalStack.subviews.contains(sut.dateLabel))
     XCTAssertTrue(sut.contentView.subviews.contains(sut.eventImage))
     XCTAssertTrue(sut.contentView.subviews.contains(sut.mapView))
-    XCTAssertTrue(sut.contentView.subviews.contains(sut.checkInView))
   }
   
   func test_EventDetailView_layoutConfiguration(){
@@ -66,7 +65,6 @@ class EventDetailViewTests: XCTestCase {
     XCTAssertEqual(sut.mapNormalHeightConstraint?.isActive, false)
     XCTAssertEqual(sut.mapNormalTopConstraint?.isActive, false)
     XCTAssertEqual(sut.mapFullscreenTopConstraint?.isActive, true)
-    XCTAssertEqual(sut.mapFullscreenBottomConstraint?.isActive, true)
     
   }
   
@@ -81,6 +79,5 @@ class EventDetailViewTests: XCTestCase {
     XCTAssertEqual(sut.mapNormalHeightConstraint?.isActive, true)
     XCTAssertEqual(sut.mapNormalTopConstraint?.isActive, true)
     XCTAssertEqual(sut.mapFullscreenTopConstraint?.isActive, false)
-    XCTAssertEqual(sut.mapFullscreenBottomConstraint?.isActive, false)
   }
 }

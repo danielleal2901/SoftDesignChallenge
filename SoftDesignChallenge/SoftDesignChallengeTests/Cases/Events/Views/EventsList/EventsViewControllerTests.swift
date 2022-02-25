@@ -28,7 +28,7 @@ class EventsViewControllerTests: XCTestCase {
   func test_EventsViewController_layoutConfiguration() {
     XCTAssertTrue(sut.view.subviews.contains(sut.eventsView))
     XCTAssertTrue(sut.view.backgroundColor == .white)
-    XCTAssertTrue(sut.navigationItem.title == "Events Finder")
+    XCTAssertTrue(sut.navigationItem.title == "Eventos")
   }
   
   func test_EventsViewController_coordinatorDelegate() throws {

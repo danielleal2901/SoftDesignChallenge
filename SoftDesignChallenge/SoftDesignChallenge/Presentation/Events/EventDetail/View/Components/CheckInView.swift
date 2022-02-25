@@ -179,11 +179,11 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
     endEditing(true)
   }
   
-  @objc func tappedCheckIn(_ sender: Any){
+  @objc func tappedCheckIn(_ sender: Any?){
     viewModel.sendCheckin(name: nameTextfield.text ?? "", email: emailTextfield.text ?? "")
   }
   
-  @objc func tappedClose(_ sender: Any){
+  @objc func tappedClose(_ sender: Any?){
     isHidden = true
   }
 }
