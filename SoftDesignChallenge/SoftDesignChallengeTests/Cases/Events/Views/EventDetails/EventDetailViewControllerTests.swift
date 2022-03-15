@@ -68,7 +68,6 @@ class EventDetailViewControllerTests: XCTestCase {
     XCTAssertEqual(sut.mapNormalHeightConstraint?.isActive, false)
     XCTAssertEqual(sut.mapNormalTopConstraint?.isActive, false)
     XCTAssertEqual(sut.mapFullscreenTopConstraint?.isActive, true)
-    XCTAssertEqual(sut.mapFullscreenBottomConstraint?.isActive, true)
   }
   
   func test_EventsDetailViewController_removeMapViewFullscreen() {
@@ -77,7 +76,6 @@ class EventDetailViewControllerTests: XCTestCase {
     XCTAssertEqual(sut.mapNormalHeightConstraint?.isActive, true)
     XCTAssertEqual(sut.mapNormalTopConstraint?.isActive, true)
     XCTAssertEqual(sut.mapFullscreenTopConstraint?.isActive, false)
-    XCTAssertEqual(sut.mapFullscreenBottomConstraint?.isActive, false)
   }
   
   func test_EventsDetailViewController_showCheckIn() {

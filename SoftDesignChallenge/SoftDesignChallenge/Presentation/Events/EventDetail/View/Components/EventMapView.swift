@@ -79,7 +79,7 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
       mapView.leadingAnchor.constraint(equalTo: leadingAnchor),
       mapView.trailingAnchor.constraint(equalTo: trailingAnchor),
       
-      closeMap.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+      closeMap.topAnchor.constraint(equalTo: topAnchor, constant: 25),
       closeMap.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
       closeMap.heightAnchor.constraint(equalToConstant: 40),
       closeMap.widthAnchor.constraint(equalToConstant: 40)
