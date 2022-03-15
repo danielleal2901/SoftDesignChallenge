@@ -14,7 +14,7 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
   typealias ImageDescriptorType = EventDetailImage
 
   //MARK: Properties
-  let event: Event
+  private let state: EventMapState
   private var mapHeightConstraint: NSLayoutConstraint?
   private var isMapExpanded: Bool = false {
     didSet {
@@ -47,8 +47,8 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
   }()
   
   //MARK: Initializers
-  init(event: Event){
-    self.event = event
+  init(state: EventMapState){
+    self.state = state
     
     super.init(frame: .zero)
     setupView()
@@ -63,7 +63,7 @@ class EventMapView: UIView, ViewCodable, ImageRetriever {
     super.didMoveToSuperview()
     
     DispatchQueue.main.async {
-      self.updateLocationOnMap(to: CLLocation(latitude: self.event.latitude, longitude: self.event.longitude), with: self.event.title)
+      self.updateLocationOnMap(to: CLLocation(latitude: self.state.latitude, longitude: self.state.longitude), with: self.state.title)
     }
   }
   

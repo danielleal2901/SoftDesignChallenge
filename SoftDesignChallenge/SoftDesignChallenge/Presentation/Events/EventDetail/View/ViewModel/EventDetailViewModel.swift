@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import CoreLocation
 
 fileprivate enum Constants {
   static let date = "Data: "
@@ -56,6 +57,14 @@ class EventDetailViewModel {
   
   var image: UIImage? {
     event.loadedImage
+  }
+  
+  var latitude: Double {
+    event.latitude
+  }
+  
+  var longitude: Double {
+    event.longitude
   }
   
   //MARK: Initializers

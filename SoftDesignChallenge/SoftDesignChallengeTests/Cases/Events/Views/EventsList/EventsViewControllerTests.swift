@@ -11,14 +11,20 @@ import XCTest
 
 class EventsViewControllerTests: XCTestCase {
   var sut: EventsViewController!
+  var networkMock: EventNetworkMock!
+  var viewModel: EventsViewModel!
   
   override func setUpWithError() throws {
-    let viewModelMock = EventsViewModel(network: EventNetworkMock())
-    sut = EventsViewController(viewModel: viewModelMock)
+    networkMock = EventNetworkMock()
+    viewModel = EventsViewModel(network: networkMock)
+    sut = EventsViewController(viewModel: viewModel)
+    sut.loadView()
   }
   
   override func tearDownWithError() throws {
     sut = nil
+    networkMock = nil
+    viewModel = nil
   }
   
   func test_EventsViewController_emptyInitialization() {
@@ -26,30 +32,42 @@ class EventsViewControllerTests: XCTestCase {
   }
   
   func test_EventsViewController_layoutConfiguration() {
-    XCTAssertTrue(sut.view.subviews.contains(sut.eventsView))
+    XCTAssertTrue(sut.view.subviews.contains(sut.searchBar))
+    XCTAssertTrue(sut.view.subviews.contains(sut.tableView))
+    XCTAssertTrue(sut.view.subviews.contains(sut.loadingView))
+    XCTAssertTrue(sut.view.subviews.contains(sut.errorView))
+    XCTAssertTrue(sut.view.subviews.contains(sut.errorView))
     XCTAssertTrue(sut.view.backgroundColor == .white)
     XCTAssertTrue(sut.navigationItem.title == "Eventos")
   }
   
-  func test_EventsViewController_coordinatorDelegate() throws {
-    let mockData = try JSONHelper.loadFromFile(name: "event-mock")
-    let event = try JSONDecoder().decode(Event.self, from: mockData!)
-    let coordinator = EventsCoordinatorMock()
-    sut.coordinator = coordinator
-  
-    XCTAssertNoThrow(sut.goEventDetailFlow(event: event))
-    
-    XCTAssertTrue(coordinator.calledShowEventDetail)
+  func test_EventsViewController_showEvents() throws {
+    viewModel.getEvents()
+
+    XCTAssertFalse(sut.tableView.isHidden)
+    XCTAssertTrue(sut.errorView.isHidden)
+    XCTAssertTrue(sut.loadingView.isHidden)
   }
   
-  func test_EventsViewController_outputDelegate() throws {
-    let mockData = try JSONHelper.loadFromFile(name: "event-mock")
-    let event = try JSONDecoder().decode(Event.self, from: mockData!)
-    let coordinator = EventsCoordinatorMock()
-    sut.coordinator = coordinator
+  func test_EventsViewController_showError() throws {
+    networkMock.responseMode = .error
     
-    XCTAssertNoThrow(sut.goEventDetailFlow(event: event))
+    viewModel.getEvents()
+        
+    XCTAssertFalse(sut.errorView.isHidden)
+    XCTAssertTrue(sut.tableView.isHidden)
+    XCTAssertTrue(sut.loadingView.isHidden)
     
-    XCTAssertTrue(coordinator.calledShowEventDetail)
   }
+  
+  func test_EventsViewController_showLoading() throws {
+    sut.viewModel.searchObserver.on(.next("Testing..."))
+    
+    XCTAssertTrue(try sut.viewModel.isLoading.toBlocking().first()!)
+    
+    XCTAssertFalse(sut.loadingView.isHidden)
+    XCTAssertTrue(sut.errorView.isHidden)
+    XCTAssertTrue(sut.tableView.isHidden)
+  }
+
 }

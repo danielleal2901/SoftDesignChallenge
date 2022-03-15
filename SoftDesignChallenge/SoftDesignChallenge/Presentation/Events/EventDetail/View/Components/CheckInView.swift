@@ -20,7 +20,7 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
   typealias ImageDescriptorType = EventDetailImage
   
   //MARK: Properties
-  let viewModel: EventDetailViewModel
+  weak var outputDelegate: CheckInOutputDelegate?
   let disposeBag = DisposeBag()
   
   //MARK: Layout
@@ -105,9 +105,7 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
   }()
   
   //MARK: Initializers
-  init(viewModel: EventDetailViewModel){
-    self.viewModel = viewModel
-    
+  init(){
     super.init(frame: .zero)
     setupView()
   }
@@ -140,7 +138,6 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
       containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
       containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
       containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
-      containerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
       
       closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
       closeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
@@ -152,8 +149,8 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
       verticalStack.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 15),
       
       checkInButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-      checkInButton.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 5),
-      checkInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -5),
+      checkInButton.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 10),
+      checkInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
       
       nameTextfield.heightAnchor.constraint(equalToConstant: 40),
       emailTextfield.heightAnchor.constraint(equalToConstant: 40),
@@ -169,18 +166,11 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
     addGestureRecognizer(tap)
   }
   
-  func bindUI() {
-    viewModel.checkInResponse.filter({!$0.message.isEmpty})
-      .drive(rx.response)
-      .disposed(by: disposeBag)
-  }
-  
   @objc func dismissKeyboard() {
     endEditing(true)
   }
-  
-  @objc func tappedCheckIn(_ sender: Any?){
-    viewModel.sendCheckin(name: nameTextfield.text ?? "", email: emailTextfield.text ?? "")
+  @objc func tappedCheckIn(_ sender: Any){
+    outputDelegate?.sendCheckIn(name: nameTextfield.text ?? "", email: emailTextfield.text ?? "")
   }
   
   @objc func tappedClose(_ sender: Any?){

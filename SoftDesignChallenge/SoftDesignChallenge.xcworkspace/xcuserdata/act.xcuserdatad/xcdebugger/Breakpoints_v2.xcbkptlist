@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "832F6E91-EF6E-4AD2-AF28-1FFF185F1EEF"
-            shouldBeEnabled = "No"
+            uuid = "8528710B-97D8-4916-991F-A4E3A694081F"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoftDesignChallenge/Presentation/Events/EventList/ViewModel/EventsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "search(byTerm:)"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "getEvents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

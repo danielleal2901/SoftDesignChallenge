@@ -1,5 +1,5 @@
 //
-//  EventDetailView+Constraints.swift
+//  EventDetailViewController+Constraints.swift
 //  SoftDesignChallenge
 //
 //  Created by Daniel Leal on 23/02/22.
@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-extension EventDetailView {
+extension EventDetailViewController {
   func scrollViewConstraints() -> [NSLayoutConstraint] {
     [
-      scrollView.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-      scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-      scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      scrollView.bottomAnchor.constraint(equalTo: bottomAnchor)
+      scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+      scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     ]
   }
   
@@ -42,8 +42,8 @@ extension EventDetailView {
     [
       eventImage.topAnchor.constraint(equalTo: contentView.topAnchor),
       eventImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-      eventImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
-      eventImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
+      eventImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+      eventImage.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
     ]
   }
   
@@ -66,11 +66,20 @@ extension EventDetailView {
     mapNormalTopConstraint = mapView.topAnchor.constraint(greaterThanOrEqualTo: verticalStack.bottomAnchor, constant: 30)
     mapNormalTopConstraint?.isActive = true
 
-    mapNormalHeightConstraint = mapView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
+    mapNormalHeightConstraint = mapView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
     mapNormalHeightConstraint?.isActive = true
     
-    mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: topAnchor)
+    mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: view.topAnchor)
 
     return constraints
+  }
+  
+  func checkInConstraints() -> [NSLayoutConstraint] {
+    return [
+      checkInView.topAnchor.constraint(equalTo: view.topAnchor),
+      checkInView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      checkInView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      checkInView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    ]
   }
 }
