@@ -20,7 +20,6 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   var mapNormalTopConstraint: NSLayoutConstraint?
   var mapNormalHeightConstraint: NSLayoutConstraint?
   var mapFullscreenTopConstraint: NSLayoutConstraint?
-  var mapFullscreenBottomConstraint: NSLayoutConstraint?
   
   //MARK: Layout
   let scrollView : UIScrollView = {
@@ -100,8 +99,6 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   
   lazy var checkInView: CheckInView = {
     let view = CheckInView()
-    view.layer.cornerRadius = 10
-    view.clipsToBounds = true
     view.translatesAutoresizingMaskIntoConstraints = false
     view.isHidden = true
     return view
@@ -193,7 +190,6 @@ extension EventDetailViewController: EventMapViewOutputDelegate {
     mapNormalHeightConstraint?.isActive = false
     mapNormalTopConstraint?.isActive = false
     mapFullscreenTopConstraint?.isActive = true
-    mapFullscreenBottomConstraint?.isActive = true
     
     navigationController?.setNavigationBarHidden(true, animated: false)
     UIView.animate(withDuration: 0.3) {
@@ -203,7 +199,6 @@ extension EventDetailViewController: EventMapViewOutputDelegate {
   
   func removeMapFullscreen() {
     mapFullscreenTopConstraint?.isActive = false
-    mapFullscreenBottomConstraint?.isActive = false
     mapNormalTopConstraint?.isActive = true
     mapNormalHeightConstraint?.isActive = true
 

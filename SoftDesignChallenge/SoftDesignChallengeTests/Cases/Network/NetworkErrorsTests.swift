@@ -21,25 +21,25 @@ class NetworkErrorsTests: XCTestCase {
   func test_NetworkErrors_invalidUrl() {
     sut = .invalidUrl
     
-    XCTAssertEqual(sut.message, "Invalid url")
+    XCTAssertEqual(sut.message, "URL inválida")
   }
   
   func test_NetworkErrors_decodeError() {
     sut = .decodeError
     
-    XCTAssertEqual(sut.message, "Decode object error")
+    XCTAssertEqual(sut.message, "Erro na decodificação do objeto")
   }
   
   func test_NetworkErrors_statusCode() {
     let statusCode = 404
     sut = .statusCode(code: statusCode)
     
-    XCTAssertEqual(sut.message, "Error \(statusCode)")
+    XCTAssertEqual(sut.message, "Erro: \(statusCode)")
   }
   
   func test_NetworkErrors_withoutResponseData() {
     sut = .withoutResponseData
     
-    XCTAssertEqual(sut.message, "Without response data")
+    XCTAssertEqual(sut.message, "Sem dados na resposta")
   }
 }
