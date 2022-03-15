@@ -153,6 +153,7 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
   
   private func bindErrors() {
     viewModel.error
+      .debug("Debug error", trimOutput: true)
       .map { $0 != nil }
       .drive(tableView.rx.isHidden)
       .disposed(by: disposeBag)

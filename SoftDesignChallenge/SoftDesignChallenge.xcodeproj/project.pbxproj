@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0C08B88227C82EC80028B6F6 /* EventDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C08B88127C82EC80028B6F6 /* EventDetailViewModelTests.swift */; };
 		0C08B88427C82F1E0028B6F6 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C08B88327C82F1E0028B6F6 /* EventsViewModelTests.swift */; };
-		0C08B88627C858730028B6F6 /* EventDetailViewOutputDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C08B88527C858730028B6F6 /* EventDetailViewOutputDelegateMock.swift */; };
 		0C08B88827C865B80028B6F6 /* EventsCoordinatorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C08B88727C865B80028B6F6 /* EventsCoordinatorMock.swift */; };
 		0C08B88A27C868380028B6F6 /* EventsViewCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C08B88927C868380028B6F6 /* EventsViewCoordinatorDelegate.swift */; };
 		0C08B88C27C868E50028B6F6 /* EventDetailViewCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C08B88B27C868E50028B6F6 /* EventDetailViewCoordinatorDelegate.swift */; };
@@ -40,7 +39,6 @@
 		0C7A19E127C7D1BA007797AA /* EventNetworkMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19E027C7D1BA007797AA /* EventNetworkMock.swift */; };
 		0C7A19E827C7DCF4007797AA /* events-mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C7A19E727C7DCF4007797AA /* events-mock.json */; };
 		0C7A19EB27C7E8D0007797AA /* EventDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19EA27C7E8CF007797AA /* EventDetailViewControllerTests.swift */; };
-		0C7A19ED27C7EB3D007797AA /* EventDetailViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19EC27C7EB3D007797AA /* EventDetailViewTests.swift */; };
 		0C7A19EF27C7F84A007797AA /* CheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19EE27C7F84A007797AA /* CheckInView.swift */; };
 		0C7A19F727C7FE79007797AA /* CheckInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19F627C7FE79007797AA /* CheckInResponse.swift */; };
 		0C7A19FD27C80B21007797AA /* String+validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19FC27C80B21007797AA /* String+validations.swift */; };
@@ -49,8 +47,6 @@
 		0C7A1A0727C82263007797AA /* ImageRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A1A0627C82263007797AA /* ImageRequestTests.swift */; };
 		0C7A1A0927C82273007797AA /* EventRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A1A0827C82273007797AA /* EventRequestTests.swift */; };
 		0C7EFEEF27C7BB7200ED4C84 /* EventsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7EFEEE27C7BB7200ED4C84 /* EventsViewControllerTests.swift */; };
-		0C7EFEF527C7C0E400ED4C84 /* EventsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7EFEF427C7C0E400ED4C84 /* EventsViewTests.swift */; };
-		0C7EFEF727C7C23500ED4C84 /* EventsViewOutputDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7EFEF627C7C23400ED4C84 /* EventsViewOutputDelegateMock.swift */; };
 		0C7EFEFD27C7C3B400ED4C84 /* event-mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C7EFEFC27C7C3B400ED4C84 /* event-mock.json */; };
 		0C7EFF0027C7C43600ED4C84 /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7EFEFF27C7C43600ED4C84 /* JSONHelper.swift */; };
 		0C7EFF0427C7CF0500ED4C84 /* EventsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7EFF0327C7CF0500ED4C84 /* EventsViewModelProtocol.swift */; };
@@ -90,7 +86,6 @@
 /* Begin PBXFileReference section */
 		0C08B88127C82EC80028B6F6 /* EventDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModelTests.swift; sourceTree = "<group>"; };
 		0C08B88327C82F1E0028B6F6 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
-		0C08B88527C858730028B6F6 /* EventDetailViewOutputDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewOutputDelegateMock.swift; sourceTree = "<group>"; };
 		0C08B88727C865B80028B6F6 /* EventsCoordinatorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsCoordinatorMock.swift; sourceTree = "<group>"; };
 		0C08B88927C868380028B6F6 /* EventsViewCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		0C08B88B27C868E50028B6F6 /* EventDetailViewCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewCoordinatorDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +116,6 @@
 		0C7A19E027C7D1BA007797AA /* EventNetworkMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNetworkMock.swift; sourceTree = "<group>"; };
 		0C7A19E727C7DCF4007797AA /* events-mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "events-mock.json"; sourceTree = "<group>"; };
 		0C7A19EA27C7E8CF007797AA /* EventDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewControllerTests.swift; sourceTree = "<group>"; };
-		0C7A19EC27C7EB3D007797AA /* EventDetailViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewTests.swift; sourceTree = "<group>"; };
 		0C7A19EE27C7F84A007797AA /* CheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
 		0C7A19F627C7FE79007797AA /* CheckInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInResponse.swift; sourceTree = "<group>"; };
 		0C7A19FC27C80B21007797AA /* String+validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+validations.swift"; sourceTree = "<group>"; };
@@ -130,8 +124,6 @@
 		0C7A1A0627C82263007797AA /* ImageRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequestTests.swift; sourceTree = "<group>"; };
 		0C7A1A0827C82273007797AA /* EventRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRequestTests.swift; sourceTree = "<group>"; };
 		0C7EFEEE27C7BB7200ED4C84 /* EventsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewControllerTests.swift; sourceTree = "<group>"; };
-		0C7EFEF427C7C0E400ED4C84 /* EventsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewTests.swift; sourceTree = "<group>"; };
-		0C7EFEF627C7C23400ED4C84 /* EventsViewOutputDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewOutputDelegateMock.swift; sourceTree = "<group>"; };
 		0C7EFEFC27C7C3B400ED4C84 /* event-mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "event-mock.json"; sourceTree = "<group>"; };
 		0C7EFEFF27C7C43600ED4C84 /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		0C7EFF0327C7CF0500ED4C84 /* EventsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -294,7 +286,6 @@
 			isa = PBXGroup;
 			children = (
 				0C7A19EA27C7E8CF007797AA /* EventDetailViewControllerTests.swift */,
-				0C7A19EC27C7EB3D007797AA /* EventDetailViewTests.swift */,
 			);
 			path = EventDetails;
 			sourceTree = "<group>";
@@ -365,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				0C7EFEEE27C7BB7200ED4C84 /* EventsViewControllerTests.swift */,
-				0C7EFEF427C7C0E400ED4C84 /* EventsViewTests.swift */,
 			);
 			path = EventsList;
 			sourceTree = "<group>";
@@ -376,8 +366,6 @@
 				0C7EFEFC27C7C3B400ED4C84 /* event-mock.json */,
 				0C7A19E727C7DCF4007797AA /* events-mock.json */,
 				0C7A19E027C7D1BA007797AA /* EventNetworkMock.swift */,
-				0C7EFEF627C7C23400ED4C84 /* EventsViewOutputDelegateMock.swift */,
-				0C08B88527C858730028B6F6 /* EventDetailViewOutputDelegateMock.swift */,
 				0C08B88727C865B80028B6F6 /* EventsCoordinatorMock.swift */,
 			);
 			path = Mocks;
@@ -829,9 +817,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C7A19ED27C7EB3D007797AA /* EventDetailViewTests.swift in Sources */,
 				0C08B88427C82F1E0028B6F6 /* EventsViewModelTests.swift in Sources */,
-				0C7EFEF727C7C23500ED4C84 /* EventsViewOutputDelegateMock.swift in Sources */,
 				0C7A1A0727C82263007797AA /* ImageRequestTests.swift in Sources */,
 				0C7A19E127C7D1BA007797AA /* EventNetworkMock.swift in Sources */,
 				0C7EFF0027C7C43600ED4C84 /* JSONHelper.swift in Sources */,
@@ -839,12 +825,10 @@
 				0C7A1A0027C81747007797AA /* MainCoordinatorTests.swift in Sources */,
 				0C08B88827C865B80028B6F6 /* EventsCoordinatorMock.swift in Sources */,
 				0C08B89327C871250028B6F6 /* NetworkErrorsTests.swift in Sources */,
-				0C08B88627C858730028B6F6 /* EventDetailViewOutputDelegateMock.swift in Sources */,
 				0C08B88227C82EC80028B6F6 /* EventDetailViewModelTests.swift in Sources */,
 				0C7A1A0927C82273007797AA /* EventRequestTests.swift in Sources */,
 				0C7A19EB27C7E8D0007797AA /* EventDetailViewControllerTests.swift in Sources */,
 				0C7EFEEF27C7BB7200ED4C84 /* EventsViewControllerTests.swift in Sources */,
-				0C7EFEF527C7C0E400ED4C84 /* EventsViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
