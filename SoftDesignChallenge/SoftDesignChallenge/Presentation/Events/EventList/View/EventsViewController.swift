@@ -5,11 +5,13 @@
 //  Created by Daniel Leal on 22/02/22.
 //
 
+import Foundation
 import UIKit
 import RxSwift
 
 fileprivate enum Constants {
   static let navigationTitle = "Eventos"
+  static let searchBarPlaceholder = "Search for event"
 }
 
 class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
@@ -19,14 +21,41 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
   weak var coordinator: EventsViewCoordinatorDelegate?
   let viewModel: EventsViewModel
   let disposeBag = DisposeBag()
-
+  
   //MARK: Layout
-  lazy var eventsView: EventsView = {
-    let view = EventsView()
-    view.outputDelegate = self
+  let searchBar: UISearchBar = {
+    let searchBar = UISearchBar()
+    searchBar.placeholder = Constants.searchBarPlaceholder
+    searchBar.tintColor = .red
+    searchBar.barStyle = .default
+    searchBar.backgroundImage = UIImage()
+    searchBar.translatesAutoresizingMaskIntoConstraints = false
+    return searchBar
+  }()
+  
+  let tableView: UITableView = {
+    let tableView = UITableView()
+    tableView.register(EventTableViewCell.self, forCellReuseIdentifier: EventTableViewCell.identifier)
+    tableView.rowHeight = 80
+    tableView.contentMode = .scaleAspectFill
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    return tableView
+  }()
+  
+  let loadingView: LoadingView = {
+    let view = LoadingView()
+    view.isHidden = true
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
   }()
+  
+  let errorView: SearchErrorView = {
+    let view = SearchErrorView()
+    view.isHidden = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+  
   
   //MARK: Initializers
   init(viewModel: EventsViewModel = EventsViewModel()) {
@@ -51,37 +80,60 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
   }
   
   func addHierarchy() {
-    view.addSubview(eventsView)
+    view.addSubview(searchBar)
+    view.addSubview(tableView)
+    view.addSubview(errorView)
+    view.addSubview(loadingView)
   }
   
   func addConstraints() {
     NSLayoutConstraint.activate([
-      eventsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      eventsView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      eventsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      eventsView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+      searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+      searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+      searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+      
+      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+      tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      
+      errorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      errorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      errorView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+      
+      loadingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+      loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      loadingView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
     ])
-  }
-
-  func applyAdditionalConfiguration() {
-    view.backgroundColor = .white
-    navigationItem.title = Constants.navigationTitle
   }
   
   func bindUI() {
     bindView()
     bindErrors()
-    
     viewModel.getEvents()
   }
   
+  func applyAdditionalConfiguration() {
+    view.backgroundColor = .white
+    navigationItem.title = Constants.navigationTitle
+  }
+  
   private func bindView() {
-    viewModel.events.drive(eventsView.tableView.rx.items(cellIdentifier: EventTableViewCell.identifier, cellType: EventTableViewCell.self))
+    viewModel.events.drive(tableView.rx.items(cellIdentifier: EventTableViewCell.identifier, cellType: EventTableViewCell.self))
     { (row, event, cell) in
       cell.setup(event: event)
     }.disposed(by: disposeBag)
     
-    eventsView.searchBar
+    tableView.rx.modelSelected(Event.self).subscribe(onNext: {[weak self] event in
+      self?.coordinator?.showEventDetail(event: event)
+    }).disposed(by: disposeBag)
+    
+    tableView.rx.itemSelected
+      .subscribe(onNext: { [weak self] indexPath in
+        self?.tableView.deselectRow(at: indexPath, animated: true)
+      }).disposed(by: disposeBag)
+    
+    searchBar
       .rx
       .text
       .orEmpty
@@ -90,32 +142,32 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
     
     viewModel.isLoading
       .asDriver()
-      .drive(eventsView.tableView.rx.isHidden)
+      .drive(tableView.rx.isHidden)
       .disposed(by: disposeBag)
     
     viewModel.isLoading
-        .map(!)
-        .drive(eventsView.loadingView.rx.isHidden)
-        .disposed(by: disposeBag)
+      .map(!)
+      .drive(loadingView.rx.isHidden)
+      .disposed(by: disposeBag)
   }
   
   private func bindErrors() {
     viewModel.error
-        .map { $0 != nil }
-        .drive(eventsView.tableView.rx.isHidden)
-        .disposed(by: disposeBag)
+      .map { $0 != nil }
+      .drive(tableView.rx.isHidden)
+      .disposed(by: disposeBag)
     viewModel.error
-        .map { $0 != nil }
-        .drive(eventsView.loadingView.rx.isHidden)
-        .disposed(by: disposeBag)
+      .map { $0 != nil }
+      .drive(loadingView.rx.isHidden)
+      .disposed(by: disposeBag)
     viewModel.error
-        .map { $0 == nil }
-        .drive(eventsView.errorView.rx.isHidden)
-        .disposed(by: disposeBag)
+      .map { $0 == nil }
+      .drive(errorView.rx.isHidden)
+      .disposed(by: disposeBag)
     viewModel.error
-      .drive(eventsView.errorView.rx.errorMessage)
+      .drive(errorView.rx.errorMessage)
       .disposed(by: disposeBag)
   }
+  
 }
-
 

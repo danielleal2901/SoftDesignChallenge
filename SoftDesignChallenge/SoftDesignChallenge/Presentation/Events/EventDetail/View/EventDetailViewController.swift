@@ -11,28 +11,101 @@ import RxSwift
 
 class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever {
   typealias ImageDescriptorType = EventDetailImage
-  
+
   //MARK: Properties
   let disposeBag = DisposeBag()
   let viewModel: EventDetailViewModel
   weak var coordinator: EventDetailViewCoordinatorDelegate?
   
+  var mapNormalTopConstraint: NSLayoutConstraint?
+  var mapNormalHeightConstraint: NSLayoutConstraint?
+  var mapFullscreenTopConstraint: NSLayoutConstraint?
+  var mapFullscreenBottomConstraint: NSLayoutConstraint?
+  
   //MARK: Layout
-  lazy var detailView: EventDetailView = {
-    let view = EventDetailView(state:
-      EventDetailState(
-        title: viewModel.title,
-        image: viewModel.image,
-        description: viewModel.description,
-        date: viewModel.date,
-        longitude: viewModel.longitude,
-        latitude: viewModel.latitude
-      ))
+  let scrollView : UIScrollView = {
+    let scroll = UIScrollView()
+    scroll.translatesAutoresizingMaskIntoConstraints = false
+    return scroll
+  }()
+  
+  let contentView : UIView = {
+    let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.outputDelegate = self
     return view
   }()
   
+  let verticalStack: UIStackView = {
+    let stack = UIStackView()
+    stack.axis = .vertical
+    stack.alignment = .center
+    stack.distribution = .fillProportionally
+    stack.spacing = 10
+    stack.translatesAutoresizingMaskIntoConstraints = false
+    return stack
+  }()
+  
+  lazy var titleLabel: UILabel = {
+    let label = UILabel()
+    label.text = viewModel.title
+    label.textAlignment = .center
+    label.numberOfLines = 0
+    label.font = UIFont(name: "AvenirNextCondensed-DemiBold", size: 16)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  lazy var descriptionLabel: UILabel = {
+    let label = UILabel()
+    label.text = viewModel.description
+    label.textAlignment = .justified
+    label.numberOfLines = 0
+    label.font = UIFont(name: "AvenirNextCondensed-Regular", size: 14)
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  lazy var dateLabel: UILabel = {
+    let label = UILabel()
+    label.attributedText = viewModel.date
+    label.textAlignment = .left
+    label.translatesAutoresizingMaskIntoConstraints = false
+    return label
+  }()
+  
+  lazy var eventImage: UIImageView = {
+    let image = UIImageView()
+    image.image = viewModel.image
+    image.contentMode = .scaleAspectFill
+    image.layer.cornerRadius = 10.0
+    image.layer.masksToBounds = true
+    image.clipsToBounds = true
+    image.translatesAutoresizingMaskIntoConstraints = false
+    return image
+  }()
+  
+  lazy var mapView: EventMapView = {
+    let map =
+    EventMapView(state:
+                  EventMapState(
+                    longitude: viewModel.longitude,
+                    latitude: viewModel.latitude,
+                    title: viewModel.title
+                  )
+    )
+    map.outputDelegate = self
+    map.translatesAutoresizingMaskIntoConstraints = false
+    return map
+  }()
+  
+  lazy var checkInView: CheckInView = {
+    let view = CheckInView()
+    view.layer.cornerRadius = 10
+    view.clipsToBounds = true
+    view.translatesAutoresizingMaskIntoConstraints = false
+    return view
+  }()
+    
   lazy var checkInView: CheckInView = {
     let view = CheckInView(viewModel: viewModel)
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,18 +135,31 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     setupView()
   }
   
+  //MARK: Methods
   func addHierarchy() {
-    view.addSubview(detailView)
-    view.addSubview(checkInView)
+    view.addSubview(scrollView)
+    scrollView.addSubview(contentView)
+    contentView.addSubview(eventImage)
+    contentView.addSubview(verticalStack)
+    contentView.addSubview(checkInView)
+    contentView.addSubview(mapView)
+    
+    verticalStack.addArrangedSubview(titleLabel)
+    verticalStack.addArrangedSubview(descriptionLabel)
+    verticalStack.addArrangedSubview(dateLabel)
   }
   
   func addConstraints() {
+    var constraints = [NSLayoutConstraint]()
+    constraints.append(contentsOf: scrollViewConstraints())
+    constraints.append(contentsOf: contentViewConstraints())
+    constraints.append(contentsOf: eventImageConstraints())
+    constraints.append(contentsOf: verticalStackConstraints())
+    constraints.append(contentsOf: mapConstraints())
+    constraints.append(contentsOf: checkInConstraints())
+    
+    NSLayoutConstraint.activate(constraints)
     NSLayoutConstraint.activate([
-      detailView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      detailView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-      detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-      
       checkInView.topAnchor.constraint(equalTo: view.topAnchor),
       checkInView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       checkInView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -88,9 +174,9 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   }
   
   func bindUI() {
-    detailView.checkInView.outputDelegate = self
+    checkInView.outputDelegate = self
     viewModel.checkInResponse
-      .drive(detailView.checkInView.rx.response)
+      .drive(checkInView.rx.response)
       .disposed(by: disposeBag)
   }
 
@@ -106,7 +192,6 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     setBarItem(image: image(.backArrow), size: CGSize(width: 24, height: 20), side: .left)
     setBarItem(image: image(.add), size: CGSize(width: 25, height: 25), side: .right)
   }
-  
 }
 
 extension EventDetailViewController: CheckInOutputDelegate {
@@ -115,4 +200,28 @@ extension EventDetailViewController: CheckInOutputDelegate {
   }
 }
 
+extension EventDetailViewController: EventMapViewOutputDelegate {
+  func showMapInFullscreen() {
+    mapNormalHeightConstraint?.isActive = false
+    mapNormalTopConstraint?.isActive = false
+    mapFullscreenTopConstraint?.isActive = true
+    mapFullscreenBottomConstraint?.isActive = true
+    
+    navigationController?.setNavigationBarHidden(true, animated: false)
+    UIView.animate(withDuration: 0.3) {
+      self.view.layoutIfNeeded()
+    }
+  }
+  
+  func removeMapFullscreen() {
+    mapFullscreenTopConstraint?.isActive = false
+    mapFullscreenBottomConstraint?.isActive = false
+    mapNormalTopConstraint?.isActive = true
+    mapNormalHeightConstraint?.isActive = true
 
+    navigationController?.setNavigationBarHidden(false, animated: false)
+    UIView.animate(withDuration: 0.3) {
+      self.view.layoutIfNeeded()
+    }
+  }
+}
