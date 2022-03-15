@@ -11,7 +11,7 @@ import RxSwift
 
 fileprivate enum Constants {
   static let navigationTitle = "Eventos"
-  static let searchBarPlaceholder = "Search for event"
+  static let searchBarPlaceholder = "Pesquisar um evento"
 }
 
 class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {

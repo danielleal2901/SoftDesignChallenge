@@ -69,8 +69,17 @@ extension EventDetailViewController {
     mapNormalHeightConstraint = mapView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
     mapNormalHeightConstraint?.isActive = true
     
-    mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: topAnchor)
+    mapFullscreenTopConstraint = mapView.topAnchor.constraint(equalTo: view.topAnchor)
 
     return constraints
+  }
+  
+  func checkInConstraints() -> [NSLayoutConstraint] {
+    return [
+      checkInView.topAnchor.constraint(equalTo: view.topAnchor),
+      checkInView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      checkInView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      checkInView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+    ]
   }
 }

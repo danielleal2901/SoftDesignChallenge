@@ -16,7 +16,8 @@ fileprivate enum Constants {
   static let emailPlaceholder = "Insira seu email"
 }
 
-class CheckInView: UIView, ViewCodable {
+class CheckInView: UIView, ViewCodable, ImageRetriever {
+  typealias ImageDescriptorType = EventDetailImage
   
   //MARK: Properties
   weak var outputDelegate: CheckInOutputDelegate?
@@ -137,7 +138,6 @@ class CheckInView: UIView, ViewCodable {
       containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
       containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
       containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.6),
-      containerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25),
       
       closeButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
       closeButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
@@ -149,8 +149,8 @@ class CheckInView: UIView, ViewCodable {
       verticalStack.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 15),
       
       checkInButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-      checkInButton.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 5),
-      checkInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -5),
+      checkInButton.topAnchor.constraint(equalTo: verticalStack.bottomAnchor, constant: 10),
+      checkInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
       
       nameTextfield.heightAnchor.constraint(equalToConstant: 40),
       emailTextfield.heightAnchor.constraint(equalToConstant: 40),

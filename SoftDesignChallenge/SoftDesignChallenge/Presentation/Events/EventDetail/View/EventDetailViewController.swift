@@ -103,12 +103,6 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     view.layer.cornerRadius = 10
     view.clipsToBounds = true
     view.translatesAutoresizingMaskIntoConstraints = false
-    return view
-  }()
-    
-  lazy var checkInView: CheckInView = {
-    let view = CheckInView(viewModel: viewModel)
-    view.translatesAutoresizingMaskIntoConstraints = false
     view.isHidden = true
     return view
   }()
@@ -141,8 +135,8 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     scrollView.addSubview(contentView)
     contentView.addSubview(eventImage)
     contentView.addSubview(verticalStack)
-    contentView.addSubview(checkInView)
     contentView.addSubview(mapView)
+    contentView.addSubview(checkInView)
     
     verticalStack.addArrangedSubview(titleLabel)
     verticalStack.addArrangedSubview(descriptionLabel)
@@ -159,12 +153,6 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     constraints.append(contentsOf: checkInConstraints())
     
     NSLayoutConstraint.activate(constraints)
-    NSLayoutConstraint.activate([
-      checkInView.topAnchor.constraint(equalTo: view.topAnchor),
-      checkInView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      checkInView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      checkInView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-    ])
   }
   
   func applyAdditionalConfiguration() {
