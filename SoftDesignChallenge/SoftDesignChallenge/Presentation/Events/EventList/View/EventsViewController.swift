@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 fileprivate enum Constants {
   static let navigationTitle = "Eventos"
@@ -17,10 +18,11 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
   //MARK: Properties
   weak var coordinator: EventsViewCoordinatorDelegate?
   let viewModel: EventsViewModel
+  let disposeBag = DisposeBag()
 
   //MARK: Layout
   lazy var eventsView: EventsView = {
-    let view = EventsView(viewModel: viewModel)
+    let view = EventsView()
     view.outputDelegate = self
     view.translatesAutoresizingMaskIntoConstraints = false
     return view
@@ -66,6 +68,54 @@ class EventsViewController: BaseViewController, ViewCodable, ImageRetriever {
     navigationItem.title = Constants.navigationTitle
   }
   
+  func bindUI() {
+    bindView()
+    bindErrors()
+    
+    viewModel.getEvents()
+  }
+  
+  private func bindView() {
+    viewModel.events.drive(eventsView.tableView.rx.items(cellIdentifier: EventTableViewCell.identifier, cellType: EventTableViewCell.self))
+    { (row, event, cell) in
+      cell.setup(event: event)
+    }.disposed(by: disposeBag)
+    
+    eventsView.searchBar
+      .rx
+      .text
+      .orEmpty
+      .bind(to: viewModel.searchObserver)
+      .disposed(by: disposeBag)
+    
+    viewModel.isLoading
+      .asDriver()
+      .drive(eventsView.tableView.rx.isHidden)
+      .disposed(by: disposeBag)
+    
+    viewModel.isLoading
+        .map(!)
+        .drive(eventsView.loadingView.rx.isHidden)
+        .disposed(by: disposeBag)
+  }
+  
+  private func bindErrors() {
+    viewModel.error
+        .map { $0 != nil }
+        .drive(eventsView.tableView.rx.isHidden)
+        .disposed(by: disposeBag)
+    viewModel.error
+        .map { $0 != nil }
+        .drive(eventsView.loadingView.rx.isHidden)
+        .disposed(by: disposeBag)
+    viewModel.error
+        .map { $0 == nil }
+        .drive(eventsView.errorView.rx.isHidden)
+        .disposed(by: disposeBag)
+    viewModel.error
+      .drive(eventsView.errorView.rx.errorMessage)
+      .disposed(by: disposeBag)
+  }
 }
 
 

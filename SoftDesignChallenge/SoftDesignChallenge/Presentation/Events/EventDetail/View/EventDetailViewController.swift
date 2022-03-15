@@ -7,18 +7,27 @@
 
 import Foundation
 import UIKit
+import RxSwift
 
 class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever {
   typealias ImageDescriptorType = EventDetailImage
   
   //MARK: Properties
-  let event: Event
+  let disposeBag = DisposeBag()
   let viewModel: EventDetailViewModel
   weak var coordinator: EventDetailViewCoordinatorDelegate?
   
   //MARK: Layout
   lazy var detailView: EventDetailView = {
-    let view = EventDetailView(viewModel: viewModel)
+    let view = EventDetailView(state:
+      EventDetailState(
+        title: viewModel.title,
+        image: viewModel.image,
+        description: viewModel.description,
+        date: viewModel.date,
+        longitude: viewModel.longitude,
+        latitude: viewModel.latitude
+      ))
     view.translatesAutoresizingMaskIntoConstraints = false
     view.outputDelegate = self
     return view
@@ -32,9 +41,8 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
   }()
   
   //MARK: Initializers
-  init(event: Event, viewModel: EventDetailViewModel? = nil){
-    self.event = event
-    self.viewModel = viewModel ?? EventDetailViewModel(event: event)
+  init(viewModel: EventDetailViewModel){
+    self.viewModel = viewModel
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -79,6 +87,13 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     setupNavigationBar()
   }
   
+  func bindUI() {
+    detailView.checkInView.outputDelegate = self
+    viewModel.checkInResponse
+      .drive(detailView.checkInView.rx.response)
+      .disposed(by: disposeBag)
+  }
+
   @objc override func leftButtonAction(_ sender: Any?) {
     coordinator?.didFinishDetail()
   }
@@ -92,6 +107,12 @@ class EventDetailViewController: BaseViewController, ViewCodable, ImageRetriever
     setBarItem(image: image(.add), size: CGSize(width: 25, height: 25), side: .right)
   }
   
+}
+
+extension EventDetailViewController: CheckInOutputDelegate {
+  func sendCheckIn(name: String, email: String) {
+    viewModel.sendCheckin(name: name, email: email)
+  }
 }
 
 

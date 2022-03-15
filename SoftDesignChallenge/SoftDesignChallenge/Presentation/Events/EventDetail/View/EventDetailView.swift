@@ -7,11 +7,9 @@
 
 import Foundation
 import UIKit
-import CoreLocation
 
 class EventDetailView: UIView, ViewCodable {
   //MARK: Properties
-  let viewModel: EventDetailViewModel
   weak var outputDelegate: EventDetailViewOutputDelegate?
   var mapNormalTopConstraint: NSLayoutConstraint?
   var mapNormalHeightConstraint: NSLayoutConstraint?
@@ -42,7 +40,7 @@ class EventDetailView: UIView, ViewCodable {
   
   lazy var titleLabel: UILabel = {
     let label = UILabel()
-    label.text = viewModel.title
+    label.text = state.title
     label.textAlignment = .center
     label.numberOfLines = 0
     label.font = UIFont(name: "AvenirNextCondensed-DemiBold", size: 16)
@@ -52,7 +50,7 @@ class EventDetailView: UIView, ViewCodable {
   
   lazy var descriptionLabel: UILabel = {
     let label = UILabel()
-    label.text = viewModel.description
+    label.text = state.description
     label.textAlignment = .justified
     label.numberOfLines = 0
     label.font = UIFont(name: "AvenirNextCondensed-Regular", size: 14)
@@ -62,7 +60,7 @@ class EventDetailView: UIView, ViewCodable {
   
   lazy var dateLabel: UILabel = {
     let label = UILabel()
-    label.attributedText = viewModel.date
+    label.attributedText = state.date
     label.textAlignment = .left
     label.translatesAutoresizingMaskIntoConstraints = false
     return label
@@ -70,7 +68,7 @@ class EventDetailView: UIView, ViewCodable {
   
   lazy var eventImage: UIImageView = {
     let image = UIImageView()
-    image.image = viewModel.image
+    image.image = state.image
     image.contentMode = .scaleAspectFill
     image.layer.cornerRadius = 10.0
     image.layer.masksToBounds = true
@@ -80,15 +78,23 @@ class EventDetailView: UIView, ViewCodable {
   }()
   
   lazy var mapView: EventMapView = {
-    let map = EventMapView(event: viewModel.event)
+    let map =
+    EventMapView(state:
+                  EventMapState(
+                    longitude: state.longitude,
+                    latitude: state.latitude,
+                    title: state.title
+                  )
+    )
     map.outputDelegate = self
     map.translatesAutoresizingMaskIntoConstraints = false
     return map
   }()
     
+  private let state: EventDetailState
   //MARK: Initializers
-  init(viewModel: EventDetailViewModel) {
-    self.viewModel = viewModel
+  init(state: EventDetailState) {
+    self.state = state
     
     super.init(frame: .zero)
     setupView()
@@ -105,7 +111,7 @@ class EventDetailView: UIView, ViewCodable {
     contentView.addSubview(eventImage)
     contentView.addSubview(verticalStack)
     contentView.addSubview(mapView)
-
+    
     verticalStack.addArrangedSubview(titleLabel)
     verticalStack.addArrangedSubview(descriptionLabel)
     verticalStack.addArrangedSubview(dateLabel)

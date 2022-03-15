@@ -38,7 +38,7 @@ class EventsCoordinator: Coordinator {
 
 extension EventsCoordinator: EventsViewCoordinatorDelegate {
   func showEventDetail(event: Event) {
-    let controller = EventDetailViewController(event: event)
+    let controller = EventDetailViewController(viewModel: EventDetailViewModel(event: event))
     controller.coordinator = self
     navigationController.pushViewController(controller, animated: true)
   }

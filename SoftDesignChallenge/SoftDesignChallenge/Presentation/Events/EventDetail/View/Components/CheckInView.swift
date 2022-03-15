@@ -16,11 +16,10 @@ fileprivate enum Constants {
   static let emailPlaceholder = "Insira seu email"
 }
 
-class CheckInView: UIView, ViewCodable, ImageRetriever {
-  typealias ImageDescriptorType = EventDetailImage
+class CheckInView: UIView, ViewCodable {
   
   //MARK: Properties
-  let viewModel: EventDetailViewModel
+  weak var outputDelegate: CheckInOutputDelegate?
   let disposeBag = DisposeBag()
   
   //MARK: Layout
@@ -105,9 +104,7 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
   }()
   
   //MARK: Initializers
-  init(viewModel: EventDetailViewModel){
-    self.viewModel = viewModel
-    
+  init(){
     super.init(frame: .zero)
     setupView()
   }
@@ -169,18 +166,11 @@ class CheckInView: UIView, ViewCodable, ImageRetriever {
     addGestureRecognizer(tap)
   }
   
-  func bindUI() {
-    viewModel.checkInResponse.filter({!$0.message.isEmpty})
-      .drive(rx.response)
-      .disposed(by: disposeBag)
-  }
-  
   @objc func dismissKeyboard() {
     endEditing(true)
   }
-  
-  @objc func tappedCheckIn(_ sender: Any?){
-    viewModel.sendCheckin(name: nameTextfield.text ?? "", email: emailTextfield.text ?? "")
+  @objc func tappedCheckIn(_ sender: Any){
+    outputDelegate?.sendCheckIn(name: nameTextfield.text ?? "", email: emailTextfield.text ?? "")
   }
   
   @objc func tappedClose(_ sender: Any?){

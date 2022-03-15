@@ -15,7 +15,6 @@ fileprivate enum Constants {
 
 class EventsView: UIView, ViewCodable {
   //MARK: Properties
-  let viewModel: EventsViewModel
   let disposeBag = DisposeBag()
   weak var outputDelegate: EventsViewOutputDelegate?
   
@@ -55,10 +54,9 @@ class EventsView: UIView, ViewCodable {
   
   
   //MARK: Initializers
-  init(viewModel: EventsViewModel = EventsViewModel()) {
-    self.viewModel = viewModel
-    
+  init() {
     super.init(frame: .zero)
+    
     setupView()
   }
   
@@ -96,63 +94,16 @@ class EventsView: UIView, ViewCodable {
   }
   
   func bindUI() {
-    bindTableView()
-    bindSearchBar()
-    bindLoading()
-    bindErrors()
-    
-    viewModel.getEvents()
-  }
-  
-  private func bindTableView() {
-    viewModel.events.drive(tableView.rx.items(cellIdentifier: EventTableViewCell.identifier, cellType: EventTableViewCell.self))
-    { (row, event, cell) in
-      cell.setup(event: event)
-    }.disposed(by: disposeBag)
-    
     tableView.rx.modelSelected(Event.self).subscribe(onNext: {[weak self] event in
       self?.outputDelegate?.goEventDetailFlow(event: event)
-      
     }).disposed(by: disposeBag)
     
     tableView.rx.itemSelected
       .subscribe(onNext: { [weak self] indexPath in
         self?.tableView.deselectRow(at: indexPath, animated: true)
       }).disposed(by: disposeBag)
+    
   }
-  
-  private func bindSearchBar() {
-    searchBar
-      .rx
-      .text
-      .orEmpty
-      .bind(to: self.viewModel.searchObserver)
-      .disposed(by: disposeBag)
-  }
-  
-  private func bindErrors() {
-    viewModel.error
-        .map { $0 != nil }
-        .drive(tableView.rx.isHidden)
-        .disposed(by: disposeBag)
-    viewModel.error
-        .map { $0 != nil }
-        .drive(loadingView.rx.isHidden)
-        .disposed(by: disposeBag)
-    viewModel.error
-        .map { $0 == nil }
-        .drive(errorView.rx.isHidden)
-        .disposed(by: disposeBag)
-    viewModel.error.drive(errorView.rx.errorMessage)
-      .disposed(by: disposeBag)
-  }
-  
-  private func bindLoading() {
-    viewModel.isLoading.asDriver().drive(tableView.rx.isHidden).disposed(by: disposeBag)
-    viewModel.isLoading
-        .map(!)
-        .drive(loadingView.rx.isHidden)
-        .disposed(by: disposeBag)
-  }
+
 }
 

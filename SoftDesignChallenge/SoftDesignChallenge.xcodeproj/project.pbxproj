@@ -38,6 +38,9 @@
 		0C184FA827C5C569000E4EF7 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA727C5C569000E4EF7 /* EventDetailViewModel.swift */; };
 		0C184FAA27C5DAD4000E4EF7 /* EventDetailView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */; };
 		0C184FAD27C5ECBA000E4EF7 /* SearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */; };
+		0C6C7EEA27E007F10027E895 /* EventDetailState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6C7EE927E007F10027E895 /* EventDetailState.swift */; };
+		0C6C7EEC27E008B20027E895 /* CheckInOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6C7EEB27E008B20027E895 /* CheckInOutputDelegate.swift */; };
+		0C6C7EEE27E00C010027E895 /* EventMapState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6C7EED27E00C010027E895 /* EventMapState.swift */; };
 		0C7A19E127C7D1BA007797AA /* EventNetworkMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19E027C7D1BA007797AA /* EventNetworkMock.swift */; };
 		0C7A19E827C7DCF4007797AA /* events-mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 0C7A19E727C7DCF4007797AA /* events-mock.json */; };
 		0C7A19EB27C7E8D0007797AA /* EventDetailViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7A19EA27C7E8CF007797AA /* EventDetailViewControllerTests.swift */; };
@@ -124,6 +127,9 @@
 		0C184FA727C5C569000E4EF7 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventDetailView+Constraints.swift"; sourceTree = "<group>"; };
 		0C184FAC27C5ECBA000E4EF7 /* SearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchError.swift; sourceTree = "<group>"; };
+		0C6C7EE927E007F10027E895 /* EventDetailState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailState.swift; sourceTree = "<group>"; };
+		0C6C7EEB27E008B20027E895 /* CheckInOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInOutputDelegate.swift; sourceTree = "<group>"; };
+		0C6C7EED27E00C010027E895 /* EventMapState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMapState.swift; sourceTree = "<group>"; };
 		0C7A19E027C7D1BA007797AA /* EventNetworkMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventNetworkMock.swift; sourceTree = "<group>"; };
 		0C7A19E727C7DCF4007797AA /* events-mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "events-mock.json"; sourceTree = "<group>"; };
 		0C7A19EA27C7E8CF007797AA /* EventDetailViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewControllerTests.swift; sourceTree = "<group>"; };
@@ -526,6 +532,7 @@
 				0C184FA127C5B95E000E4EF7 /* EventDetailViewController.swift */,
 				0CB4E87527C6BC0700949D82 /* EventDetailViewController+OutputDelegate.swift */,
 				0C184FA427C5B991000E4EF7 /* EventDetailView.swift */,
+				0C6C7EE927E007F10027E895 /* EventDetailState.swift */,
 				0C184FA927C5DAD4000E4EF7 /* EventDetailView+Constraints.swift */,
 				0CB4E87C27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift */,
 				0CB4E87727C6C0B000949D82 /* Components */,
@@ -577,8 +584,10 @@
 			isa = PBXGroup;
 			children = (
 				0CB4E87827C6C0BB00949D82 /* EventMapView.swift */,
+				0C6C7EED27E00C010027E895 /* EventMapState.swift */,
 				0CB4E87A27C6C26E00949D82 /* EventMapViewOutputDelegate.swift */,
 				0C7A19EE27C7F84A007797AA /* CheckInView.swift */,
+				0C6C7EEB27E008B20027E895 /* CheckInOutputDelegate.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -802,6 +811,7 @@
 				0CB4E87627C6BC0700949D82 /* EventDetailViewController+OutputDelegate.swift in Sources */,
 				0CB0724627C55FB10084B2E9 /* EventsViewController.swift in Sources */,
 				0CB4E87B27C6C26E00949D82 /* EventMapViewOutputDelegate.swift in Sources */,
+				0C6C7EEC27E008B20027E895 /* CheckInOutputDelegate.swift in Sources */,
 				0C7EFF0627C7D00900ED4C84 /* Network.swift in Sources */,
 				0CB4E88127C6DF4200949D82 /* NSMutableAttributedString+Styles.swift in Sources */,
 				0C08B88C27C868E50028B6F6 /* EventDetailViewCoordinatorDelegate.swift in Sources */,
@@ -835,11 +845,13 @@
 				0CB0728627C56AB00084B2E9 /* HTTPMethod.swift in Sources */,
 				0CB4E86427C6778900949D82 /* BundleIdentifiable.swift in Sources */,
 				0C184F9227C5A586000E4EF7 /* EventsTableViewCellViewModel.swift in Sources */,
+				0C6C7EEE27E00C010027E895 /* EventMapState.swift in Sources */,
 				0C184FA227C5B95F000E4EF7 /* EventDetailViewController.swift in Sources */,
 				0CB4E87D27C6C5E400949D82 /* EventDetailView+MapOutputDelegate.swift in Sources */,
 				0C08B88A27C868380028B6F6 /* EventsViewCoordinatorDelegate.swift in Sources */,
 				0CB0724427C55FB00084B2E9 /* SceneDelegate.swift in Sources */,
 				0CB4E87427C6BBC800949D82 /* EventDetailViewOutputDelegate.swift in Sources */,
+				0C6C7EEA27E007F10027E895 /* EventDetailState.swift in Sources */,
 				0CB4E86627C677DC00949D82 /* EventListImage.swift in Sources */,
 				0C184FAA27C5DAD4000E4EF7 /* EventDetailView+Constraints.swift in Sources */,
 			);
